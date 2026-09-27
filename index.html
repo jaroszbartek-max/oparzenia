@@ -738,170 +738,178 @@
         </svg>
       </div>
 
-      <!-- SYLWETKA DZIECKA (ROZCIĄGIĘTA W DÓŁ I W SZERZ) -->
+      <!-- SYLWETKA DZIECKA (WYDŁUŻONY TUŁÓW ORAZ SZERSZA/DŁUŻSZA SYLWETKA) -->
       <div id="view-child-container" class="svg-container hidden">
-        <svg viewBox="0 0 680 620">
+        <svg viewBox="0 0 680 640">
           <!-- DZIECKO PRZÓD -->
           <g id="ch-front" transform="translate(0, 0)">
             <text x="165" y="20" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">PRZÓD</text>
 
-            <ellipse id="part-ch_head_f" class="body-part" cx="165" cy="80" rx="60" ry="46" onclick="togglePart('ch_head_f')" />
-            <text class="part-title" id="t-ch_head_f" x="165" y="68">GŁOWA</text>
-            <text class="part-label" id="lbl-ch_head_f" x="165" y="88" font-size="12">8,5%</text>
+            <ellipse id="part-ch_head_f" class="body-part" cx="165" cy="78" rx="60" ry="46" onclick="togglePart('ch_head_f')" />
+            <text class="part-title" id="t-ch_head_f" x="165" y="66">GŁOWA</text>
+            <text class="part-label" id="lbl-ch_head_f" x="165" y="86" font-size="12">8,5%</text>
 
-            <rect id="part-ch_neck_f" class="body-part" x="142" y="126" width="46" height="15" rx="2" onclick="togglePart('ch_neck_f')" />
-            <text class="part-label" id="lbl-ch_neck_f" x="165" y="134" font-size="8">1%</text>
+            <rect id="part-ch_neck_f" class="body-part" x="142" y="124" width="46" height="15" rx="2" onclick="togglePart('ch_neck_f')" />
+            <text class="part-label" id="lbl-ch_neck_f" x="165" y="132" font-size="8">1%</text>
 
-            <path id="part-ch_torso_lu_f" class="body-part" d="M 98 144 L 162 144 L 162 212 L 90 212 C 87 184 91 162 98 144 Z" onclick="togglePart('ch_torso_lu_f')" />
-            <text class="part-title" id="t-ch_torso_lu_f" x="126" y="172">KLATKA</text>
-            <text class="part-label" id="lbl-ch_torso_lu_f" x="126" y="191">3,25%</text>
+            <!-- Klatka (wydłużona w dół) -->
+            <path id="part-ch_torso_lu_f" class="body-part" d="M 98 142 L 162 142 L 162 220 L 90 220 C 87 190 91 164 98 142 Z" onclick="togglePart('ch_torso_lu_f')" />
+            <text class="part-title" id="t-ch_torso_lu_f" x="126" y="174">KLATKA</text>
+            <text class="part-label" id="lbl-ch_torso_lu_f" x="126" y="193">3,25%</text>
 
-            <path id="part-ch_torso_ru_f" class="body-part" d="M 168 144 L 232 144 C 239 162 243 184 240 212 L 168 212 Z" onclick="togglePart('ch_torso_ru_f')" />
-            <text class="part-title" id="t-ch_torso_ru_f" x="204" y="172">KLATKA</text>
-            <text class="part-label" id="lbl-ch_torso_ru_f" x="204" y="191">3,25%</text>
+            <path id="part-ch_torso_ru_f" class="body-part" d="M 168 142 L 232 142 C 239 164 243 190 240 220 L 168 220 Z" onclick="togglePart('ch_torso_ru_f')" />
+            <text class="part-title" id="t-ch_torso_ru_f" x="204" y="174">KLATKA</text>
+            <text class="part-label" id="lbl-ch_torso_ru_f" x="204" y="193">3,25%</text>
 
-            <path id="part-ch_torso_ll_f" class="body-part" d="M 90 216 L 162 216 L 162 278 C 142 282 121 280 106 276 C 97 262 91 240 90 216 Z" onclick="togglePart('ch_torso_ll_f')" />
-            <text class="part-title" id="t-ch_torso_ll_f" x="126" y="240">BRZUCH</text>
-            <text class="part-label" id="lbl-ch_torso_ll_f" x="126" y="258">3,25%</text>
+            <!-- Brzuch (wydłużony i przesunięty niżej) -->
+            <path id="part-ch_torso_ll_f" class="body-part" d="M 90 224 L 162 224 L 162 296 C 142 300 121 298 106 294 C 97 278 91 252 90 224 Z" onclick="togglePart('ch_torso_ll_f')" />
+            <text class="part-title" id="t-ch_torso_ll_f" x="126" y="254">BRZUCH</text>
+            <text class="part-label" id="lbl-ch_torso_ll_f" x="126" y="272">3,25%</text>
 
-            <path id="part-ch_torso_rl_f" class="body-part" d="M 168 216 L 240 216 C 239 240 233 262 224 276 C 209 280 188 282 168 278 Z" onclick="togglePart('ch_torso_rl_f')" />
-            <text class="part-title" id="t-ch_torso_rl_f" x="204" y="240">BRZUCH</text>
-            <text class="part-label" id="lbl-ch_torso_rl_f" x="204" y="258">3,25%</text>
+            <path id="part-ch_torso_rl_f" class="body-part" d="M 168 224 L 240 224 C 239 252 233 278 224 294 C 209 298 188 300 168 296 Z" onclick="togglePart('ch_torso_rl_f')" />
+            <text class="part-title" id="t-ch_torso_rl_f" x="204" y="254">BRZUCH</text>
+            <text class="part-label" id="lbl-ch_torso_rl_f" x="204" y="272">3,25%</text>
 
-            <path id="part-ch_arm_l_f" class="body-part" d="M 96 146 L 50 168 L 30 224 L 74 224 L 94 186 Z" onclick="togglePart('ch_arm_l_f')" />
-            <text class="part-title" id="t-ch_arm_l_f" x="62" y="188">RAMIĘ</text>
-            <text class="part-label" id="lbl-ch_arm_l_f" x="62" y="204">2%</text>
+            <!-- Ramiona, przedramiona i dłonie (przesunięte w dół) -->
+            <path id="part-ch_arm_l_f" class="body-part" d="M 96 144 L 50 166 L 30 222 L 74 222 L 94 184 Z" onclick="togglePart('ch_arm_l_f')" />
+            <text class="part-title" id="t-ch_arm_l_f" x="62" y="186">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_l_f" x="62" y="202">2%</text>
 
-            <path id="part-ch_forearm_l_f" class="body-part" d="M 28 228 L 73 228 L 57 290 L 14 290 Z" onclick="togglePart('ch_forearm_l_f')" />
-            <text class="part-title" id="t-ch_forearm_l_f" x="43" y="253">PRZEDR.</text>
-            <text class="part-label" id="lbl-ch_forearm_l_f" x="43" y="269">1,5%</text>
+            <path id="part-ch_forearm_l_f" class="body-part" d="M 28 226 L 73 226 L 57 288 L 14 288 Z" onclick="togglePart('ch_forearm_l_f')" />
+            <text class="part-title" id="t-ch_forearm_l_f" x="43" y="251">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_l_f" x="43" y="267">1,5%</text>
 
-            <path id="part-ch_hand_l_f" class="body-part" d="M 12 294 L 55 294 L 41 344 L 0 344 Z" onclick="togglePart('ch_hand_l_f')" />
-            <text class="part-title" id="t-ch_hand_l_f" x="27" y="313">RĘKA</text>
-            <text class="part-label" id="lbl-ch_hand_l_f" x="27" y="328" font-size="8">1,25%</text>
+            <path id="part-ch_hand_l_f" class="body-part" d="M 12 292 L 55 292 L 41 342 L 0 342 Z" onclick="togglePart('ch_hand_l_f')" />
+            <text class="part-title" id="t-ch_hand_l_f" x="27" y="311">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_l_f" x="27" y="326" font-size="8">1,25%</text>
 
-            <path id="part-ch_arm_r_f" class="body-part" d="M 234 146 L 280 168 L 300 224 L 256 224 L 236 186 Z" onclick="togglePart('ch_arm_r_f')" />
-            <text class="part-title" id="t-ch_arm_r_f" x="268" y="188">RAMIĘ</text>
-            <text class="part-label" id="lbl-ch_arm_r_f" x="268" y="204">2%</text>
+            <path id="part-ch_arm_r_f" class="body-part" d="M 234 144 L 280 166 L 300 222 L 256 222 L 236 184 Z" onclick="togglePart('ch_arm_r_f')" />
+            <text class="part-title" id="t-ch_arm_r_f" x="268" y="186">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_r_f" x="268" y="202">2%</text>
 
-            <path id="part-ch_forearm_r_f" class="body-part" d="M 302 228 L 257 228 L 273 290 L 316 290 Z" onclick="togglePart('ch_forearm_r_f')" />
-            <text class="part-title" id="t-ch_forearm_r_f" x="287" y="253">PRZEDR.</text>
-            <text class="part-label" id="lbl-ch_forearm_r_f" x="287" y="269">1,5%</text>
+            <path id="part-ch_forearm_r_f" class="body-part" d="M 302 226 L 257 226 L 273 288 L 316 288 Z" onclick="togglePart('ch_forearm_r_f')" />
+            <text class="part-title" id="t-ch_forearm_r_f" x="287" y="251">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_r_f" x="287" y="267">1,5%</text>
 
-            <path id="part-ch_hand_r_f" class="body-part" d="M 318 294 L 275 294 L 289 344 L 330 344 Z" onclick="togglePart('ch_hand_r_f')" />
-            <text class="part-title" id="t-ch_hand_r_f" x="303" y="313">RĘKA</text>
-            <text class="part-label" id="lbl-ch_hand_r_f" x="303" y="328" font-size="8">1,25%</text>
+            <path id="part-ch_hand_r_f" class="body-part" d="M 318 292 L 275 292 L 289 342 L 330 342 Z" onclick="togglePart('ch_hand_r_f')" />
+            <text class="part-title" id="t-ch_hand_r_f" x="303" y="311">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_r_f" x="303" y="326" font-size="8">1,25%</text>
 
-            <polygon id="part-ch_groin" class="body-part" points="144,280 186,280 165,304" onclick="togglePart('ch_groin')" />
-            <text class="part-label" id="lbl-ch_groin" x="165" y="293" font-size="8">1%</text>
+            <!-- Krocze i nogi (dostosowane do dłuższego tułowia) -->
+            <polygon id="part-ch_groin" class="body-part" points="144,298 186,298 165,322" onclick="togglePart('ch_groin')" />
+            <text class="part-label" id="lbl-ch_groin" x="165" y="311" font-size="8">1%</text>
 
-            <path id="part-ch_thigh_l_f" class="body-part" d="M 106 280 L 143 280 L 153 304 L 148 390 L 92 390 L 97 318 Z" onclick="togglePart('ch_thigh_l_f')" />
-            <text class="part-title" id="t-ch_thigh_l_f" x="120" y="331">UDO</text>
-            <text class="part-label" id="lbl-ch_thigh_l_f" x="120" y="350">3,25%</text>
+            <path id="part-ch_thigh_l_f" class="body-part" d="M 106 298 L 143 298 L 153 322 L 148 408 L 92 408 L 97 336 Z" onclick="togglePart('ch_thigh_l_f')" />
+            <text class="part-title" id="t-ch_thigh_l_f" x="120" y="349">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_l_f" x="120" y="368">3,25%</text>
 
-            <path id="part-ch_calf_l_f" class="body-part" d="M 92 394 L 148 394 L 141 488 L 84 488 Z" onclick="togglePart('ch_calf_l_f')" />
-            <text class="part-title" id="t-ch_calf_l_f" x="116" y="437">PODUDZIE</text>
-            <text class="part-label" id="lbl-ch_calf_l_f" x="116" y="455">2,5%</text>
+            <path id="part-ch_calf_l_f" class="body-part" d="M 92 412 L 148 412 L 141 506 L 84 506 Z" onclick="togglePart('ch_calf_l_f')" />
+            <text class="part-title" id="t-ch_calf_l_f" x="116" y="455">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_l_f" x="116" y="473">2,5%</text>
 
-            <path id="part-ch_foot_l_f" class="body-part" d="M 84 492 L 141 492 L 135 558 L 74 558 Z" onclick="togglePart('ch_foot_l_f')" />
-            <text class="part-title" id="t-ch_foot_l_f" x="108" y="521">STOPA</text>
-            <text class="part-label" id="lbl-ch_foot_l_f" x="108" y="538" font-size="8.5">1,75%</text>
+            <path id="part-ch_foot_l_f" class="body-part" d="M 84 510 L 141 510 L 135 576 L 74 576 Z" onclick="togglePart('ch_foot_l_f')" />
+            <text class="part-title" id="t-ch_foot_l_f" x="108" y="539">STOPA</text>
+            <text class="part-label" id="lbl-ch_foot_l_f" x="108" y="556" font-size="8.5">1,75%</text>
 
-            <path id="part-ch_thigh_r_f" class="body-part" d="M 224 280 L 187 280 L 177 304 L 182 390 L 238 390 L 233 318 Z" onclick="togglePart('ch_thigh_r_f')" />
-            <text class="part-title" id="t-ch_thigh_r_f" x="210" y="331">UDO</text>
-            <text class="part-label" id="lbl-ch_thigh_r_f" x="210" y="350">3,25%</text>
+            <path id="part-ch_thigh_r_f" class="body-part" d="M 224 298 L 187 298 L 177 322 L 182 408 L 238 408 L 233 336 Z" onclick="togglePart('ch_thigh_r_f')" />
+            <text class="part-title" id="t-ch_thigh_r_f" x="210" y="349">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_r_f" x="210" y="368">3,25%</text>
 
-            <path id="part-ch_calf_r_f" class="body-part" d="M 238 394 L 182 394 L 189 488 L 246 488 Z" onclick="togglePart('ch_calf_r_f')" />
-            <text class="part-title" id="t-ch_calf_r_f" x="214" y="437">PODUDZIE</text>
-            <text class="part-label" id="lbl-ch_calf_r_f" x="214" y="455">2,5%</text>
+            <path id="part-ch_calf_r_f" class="body-part" d="M 238 412 L 182 412 L 189 506 L 246 506 Z" onclick="togglePart('ch_calf_r_f')" />
+            <text class="part-title" id="t-ch_calf_r_f" x="214" y="455">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_r_f" x="214" y="473">2,5%</text>
 
-            <path id="part-ch_foot_r_f" class="body-part" d="M 246 492 L 189 492 L 195 558 L 256 558 Z" onclick="togglePart('ch_foot_r_f')" />
-            <text class="part-title" id="t-ch_foot_r_f" x="222" y="521">STOPA</text>
-            <text class="part-label" id="lbl-ch_foot_r_f" x="222" y="538" font-size="8.5">1,75%</text>
+            <path id="part-ch_foot_r_f" class="body-part" d="M 246 510 L 189 510 L 195 576 L 256 576 Z" onclick="togglePart('ch_foot_r_f')" />
+            <text class="part-title" id="t-ch_foot_r_f" x="222" y="539">STOPA</text>
+            <text class="part-label" id="lbl-ch_foot_r_f" x="222" y="556" font-size="8.5">1,75%</text>
           </g>
 
           <!-- DZIECKO TYŁ -->
           <g id="ch-back" transform="translate(350, 0)">
             <text x="165" y="20" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">TYŁ</text>
 
-            <ellipse id="part-ch_head_b" class="body-part" cx="165" cy="80" rx="60" ry="46" onclick="togglePart('ch_head_b')" />
-            <text class="part-title" id="t-ch_head_b" x="165" y="68">GŁOWA</text>
-            <text class="part-label" id="lbl-ch_head_b" x="165" y="88" font-size="12">8,5%</text>
+            <ellipse id="part-ch_head_b" class="body-part" cx="165" cy="78" rx="60" ry="46" onclick="togglePart('ch_head_b')" />
+            <text class="part-title" id="t-ch_head_b" x="165" y="66">GŁOWA</text>
+            <text class="part-label" id="lbl-ch_head_b" x="165" y="86" font-size="12">8,5%</text>
 
-            <rect id="part-ch_neck_b" class="body-part" x="142" y="126" width="46" height="15" rx="2" onclick="togglePart('ch_neck_b')" />
-            <text class="part-label" id="lbl-ch_neck_b" x="165" y="134" font-size="8">1%</text>
+            <rect id="part-ch_neck_b" class="body-part" x="142" y="124" width="46" height="15" rx="2" onclick="togglePart('ch_neck_b')" />
+            <text class="part-label" id="lbl-ch_neck_b" x="165" y="132" font-size="8">1%</text>
 
-            <path id="part-ch_torso_lu_b" class="body-part" d="M 98 144 L 162 144 L 162 212 L 90 212 C 87 184 91 162 98 144 Z" onclick="togglePart('ch_torso_lu_b')" />
-            <text class="part-title" id="t-ch_torso_lu_b" x="126" y="172">GÓRA</text>
-            <text class="part-label" id="lbl-ch_torso_lu_b" x="126" y="191">3,25%</text>
+            <!-- Klatka tył (wydłużona w dół) -->
+            <path id="part-ch_torso_lu_b" class="body-part" d="M 98 142 L 162 142 L 162 220 L 90 220 C 87 190 91 164 98 142 Z" onclick="togglePart('ch_torso_lu_b')" />
+            <text class="part-title" id="t-ch_torso_lu_b" x="126" y="174">GÓRA</text>
+            <text class="part-label" id="lbl-ch_torso_lu_b" x="126" y="193">3,25%</text>
 
-            <path id="part-ch_torso_ru_b" class="body-part" d="M 168 144 L 232 144 C 239 162 243 184 240 212 L 168 212 Z" onclick="togglePart('ch_torso_ru_b')" />
-            <text class="part-title" id="t-ch_torso_ru_b" x="204" y="172">GÓRA</text>
-            <text class="part-label" id="lbl-ch_torso_ru_b" x="204" y="191">3,25%</text>
+            <path id="part-ch_torso_ru_b" class="body-part" d="M 168 142 L 232 142 C 239 164 243 190 240 220 L 168 220 Z" onclick="togglePart('ch_torso_ru_b')" />
+            <text class="part-title" id="t-ch_torso_ru_b" x="204" y="174">GÓRA</text>
+            <text class="part-label" id="lbl-ch_torso_ru_b" x="204" y="193">3,25%</text>
 
-            <path id="part-ch_torso_ll_b" class="body-part" d="M 90 216 L 162 216 L 162 278 C 142 282 121 280 106 276 C 97 262 91 240 90 216 Z" onclick="togglePart('ch_torso_ll_b')" />
-            <text class="part-title" id="t-ch_torso_ll_b" x="126" y="240">DÓŁ</text>
-            <text class="part-label" id="lbl-ch_torso_ll_b" x="126" y="258">3,25%</text>
+            <!-- Dół tułowia tył (wydłużony i przesunięty niżej) -->
+            <path id="part-ch_torso_ll_b" class="body-part" d="M 90 224 L 162 224 L 162 296 C 142 300 121 298 106 294 C 97 278 91 252 90 224 Z" onclick="togglePart('ch_torso_ll_b')" />
+            <text class="part-title" id="t-ch_torso_ll_b" x="126" y="254">DÓŁ</text>
+            <text class="part-label" id="lbl-ch_torso_ll_b" x="126" y="272">3,25%</text>
 
-            <path id="part-ch_torso_rl_b" class="body-part" d="M 168 216 L 240 216 C 239 240 233 262 224 276 C 209 280 188 282 168 278 Z" onclick="togglePart('ch_torso_rl_b')" />
-            <text class="part-title" id="t-ch_torso_rl_b" x="204" y="240">DÓŁ</text>
-            <text class="part-label" id="lbl-ch_torso_rl_b" x="204" y="258">3,25%</text>
+            <path id="part-ch_torso_rl_b" class="body-part" d="M 168 224 L 240 224 C 239 252 233 278 224 294 C 209 298 188 300 168 296 Z" onclick="togglePart('ch_torso_rl_b')" />
+            <text class="part-title" id="t-ch_torso_rl_b" x="204" y="254">DÓŁ</text>
+            <text class="part-label" id="lbl-ch_torso_rl_b" x="204" y="272">3,25%</text>
 
-            <path id="part-ch_arm_l_b" class="body-part" d="M 96 146 L 50 168 L 30 224 L 74 224 L 94 186 Z" onclick="togglePart('ch_arm_l_b')" />
-            <text class="part-title" id="t-ch_arm_l_b" x="62" y="188">RAMIĘ</text>
-            <text class="part-label" id="lbl-ch_arm_l_b" x="62" y="204">2%</text>
+            <!-- Ramiona tył -->
+            <path id="part-ch_arm_l_b" class="body-part" d="M 96 144 L 50 166 L 30 222 L 74 222 L 94 184 Z" onclick="togglePart('ch_arm_l_b')" />
+            <text class="part-title" id="t-ch_arm_l_b" x="62" y="186">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_l_b" x="62" y="202">2%</text>
 
-            <path id="part-ch_forearm_l_b" class="body-part" d="M 28 228 L 73 228 L 57 290 L 14 290 Z" onclick="togglePart('ch_forearm_l_b')" />
-            <text class="part-title" id="t-ch_forearm_l_b" x="43" y="253">PRZEDR.</text>
-            <text class="part-label" id="lbl-ch_forearm_l_b" x="43" y="269">1,5%</text>
+            <path id="part-ch_forearm_l_b" class="body-part" d="M 28 226 L 73 226 L 57 288 L 14 288 Z" onclick="togglePart('ch_forearm_l_b')" />
+            <text class="part-title" id="t-ch_forearm_l_b" x="43" y="251">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_l_b" x="43" y="267">1,5%</text>
 
-            <path id="part-ch_hand_l_b" class="body-part" d="M 12 294 L 55 294 L 41 344 L 0 344 Z" onclick="togglePart('ch_hand_l_b')" />
-            <text class="part-title" id="t-ch_hand_l_b" x="27" y="313">RĘKA</text>
-            <text class="part-label" id="lbl-ch_hand_l_b" x="27" y="328" font-size="8">1,25%</text>
+            <path id="part-ch_hand_l_b" class="body-part" d="M 12 292 L 55 292 L 41 342 L 0 342 Z" onclick="togglePart('ch_hand_l_b')" />
+            <text class="part-title" id="t-ch_hand_l_b" x="27" y="311">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_l_b" x="27" y="326" font-size="8">1,25%</text>
 
-            <path id="part-ch_arm_r_b" class="body-part" d="M 234 146 L 280 168 L 300 224 L 256 224 L 236 186 Z" onclick="togglePart('ch_arm_r_b')" />
-            <text class="part-title" id="t-ch_arm_r_b" x="268" y="188">RAMIĘ</text>
-            <text class="part-label" id="lbl-ch_arm_r_b" x="268" y="204">2%</text>
+            <path id="part-ch_arm_r_b" class="body-part" d="M 234 144 L 280 166 L 300 222 L 256 222 L 236 184 Z" onclick="togglePart('ch_arm_r_b')" />
+            <text class="part-title" id="t-ch_arm_r_b" x="268" y="186">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_r_b" x="268" y="202">2%</text>
 
-            <path id="part-ch_forearm_r_b" class="body-part" d="M 302 228 L 257 228 L 273 290 L 316 290 Z" onclick="togglePart('ch_forearm_r_b')" />
-            <text class="part-title" id="t-ch_forearm_r_b" x="287" y="253">PRZEDR.</text>
-            <text class="part-label" id="lbl-ch_forearm_r_b" x="287" y="269">1,5%</text>
+            <path id="part-ch_forearm_r_b" class="body-part" d="M 302 226 L 257 226 L 273 288 L 316 288 Z" onclick="togglePart('part-ch_forearm_r_b')" />
+            <text class="part-title" id="t-ch_forearm_r_b" x="287" y="251">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_r_b" x="287" y="267">1,5%</text>
 
-            <path id="part-ch_hand_r_b" class="body-part" d="M 318 294 L 275 294 L 289 344 L 330 344 Z" onclick="togglePart('ch_hand_r_b')" />
-            <text class="part-title" id="t-ch_hand_r_b" x="303" y="313">RĘKA</text>
-            <text class="part-label" id="lbl-ch_hand_r_b" x="303" y="328" font-size="8">1,25%</text>
+            <path id="part-ch_hand_r_b" class="body-part" d="M 318 292 L 275 292 L 289 342 L 330 342 Z" onclick="togglePart('ch_hand_r_b')" />
+            <text class="part-title" id="t-ch_hand_r_b" x="303" y="311">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_r_b" x="303" y="326" font-size="8">1,25%</text>
 
-            <path id="part-ch_buttock_l" class="body-part" d="M 98 276 L 162 276 L 157 318 L 94 318 Z" onclick="togglePart('ch_buttock_l')" />
-            <text class="part-title" id="t-ch_buttock_l" x="128" y="293">POŚLADEK</text>
-            <text class="part-label" id="lbl-ch_buttock_l" x="128" y="307" font-size="8">2,5%</text>
+            <!-- Pośladki i nogi tył (dostosowane do dłuższego tułowia) -->
+            <path id="part-ch_buttock_l" class="body-part" d="M 98 298 L 162 298 L 157 338 L 94 338 Z" onclick="togglePart('ch_buttock_l')" />
+            <text class="part-title" id="t-ch_buttock_l" x="128" y="315">POŚLADEK</text>
+            <text class="part-label" id="lbl-ch_buttock_l" x="128" y="330" font-size="8">2,5%</text>
 
-            <path id="part-ch_buttock_r" class="body-part" d="M 168 276 L 232 276 L 236 318 L 173 318 Z" onclick="togglePart('ch_buttock_r')" />
-            <text class="part-title" id="t-ch_buttock_r" x="202" y="293">POŚLADEK</text>
-            <text class="part-label" id="lbl-ch_buttock_r" x="202" y="307" font-size="8">2,5%</text>
+            <path id="part-ch_buttock_r" class="body-part" d="M 168 298 L 232 298 L 236 338 L 173 338 Z" onclick="togglePart('ch_buttock_r')" />
+            <text class="part-title" id="t-ch_buttock_r" x="202" y="315">POŚLADEK</text>
+            <text class="part-label" id="lbl-ch_buttock_r" x="202" y="330" font-size="8">2,5%</text>
 
-            <path id="part-ch_thigh_l_b" class="body-part" d="M 94 322 L 157 322 L 152 390 L 92 390 Z" onclick="togglePart('ch_thigh_l_b')" />
-            <text class="part-title" id="t-ch_thigh_l_b" x="124" y="352">UDO</text>
-            <text class="part-label" id="lbl-ch_thigh_l_b" x="124" y="371">3,25%</text>
+            <path id="part-ch_thigh_l_b" class="body-part" d="M 94 342 L 157 342 L 152 408 L 92 408 Z" onclick="togglePart('ch_thigh_l_b')" />
+            <text class="part-title" id="t-ch_thigh_l_b" x="124" y="372">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_l_b" x="124" y="391">3,25%</text>
 
-            <path id="part-ch_calf_l_b" class="body-part" d="M 92 394 L 148 394 L 141 488 L 84 488 Z" onclick="togglePart('ch_calf_l_b')" />
-            <text class="part-title" id="t-ch_calf_l_b" x="116" y="437">PODUDZIE</text>
-            <text class="part-label" id="lbl-ch_calf_l_b" x="116" y="455">2,5%</text>
+            <path id="part-ch_calf_l_b" class="body-part" d="M 92 412 L 148 412 L 141 506 L 84 506 Z" onclick="togglePart('ch_calf_l_b')" />
+            <text class="part-title" id="t-ch_calf_l_b" x="116" y="455">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_l_b" x="116" y="473">2,5%</text>
 
-            <path id="part-ch_foot_l_b" class="body-part" d="M 84 492 L 141 492 L 135 558 L 74 558 Z" onclick="togglePart('ch_foot_l_b')" />
-            <text class="part-title" id="t-ch_foot_l_b" x="108" y="521">PIĘTA</text>
-            <text class="part-label" id="lbl-ch_foot_l_b" x="108" y="538" font-size="8.5">1,75%</text>
+            <path id="part-ch_foot_l_b" class="body-part" d="M 84 510 L 141 510 L 135 576 L 74 576 Z" onclick="togglePart('ch_foot_l_b')" />
+            <text class="part-title" id="t-ch_foot_l_b" x="108" y="539">PIĘTA</text>
+            <text class="part-label" id="lbl-ch_foot_l_b" x="108" y="556" font-size="8.5">1,75%</text>
 
-            <path id="part-ch_thigh_r_b" class="body-part" d="M 173 322 L 236 322 L 238 390 L 182 390 Z" onclick="togglePart('ch_thigh_r_b')" />
-            <text class="part-title" id="t-ch_thigh_r_b" x="204" y="352">UDO</text>
-            <text class="part-label" id="lbl-ch_thigh_r_b" x="204" y="371">3,25%</text>
+            <path id="part-ch_thigh_r_b" class="body-part" d="M 173 342 L 236 342 L 238 408 L 182 408 Z" onclick="togglePart('ch_thigh_r_b')" />
+            <text class="part-title" id="t-ch_thigh_r_b" x="204" y="372">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_r_b" x="204" y="391">3,25%</text>
 
-            <path id="part-ch_calf_r_b" class="body-part" d="M 182 394 L 238 394 L 246 488 L 189 488 Z" onclick="togglePart('ch_calf_r_b')" />
-            <text class="part-title" id="t-ch_calf_r_b" x="214" y="437">PODUDZIE</text>
-            <text class="part-label" id="lbl-ch_calf_r_b" x="214" y="455">2,5%</text>
+            <path id="part-ch_calf_r_b" class="body-part" d="M 182 412 L 238 412 L 246 506 L 189 506 Z" onclick="togglePart('ch_calf_r_b')" />
+            <text class="part-title" id="t-ch_calf_r_b" x="214" y="455">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_r_b" x="214" y="473">2,5%</text>
 
-            <path id="part-ch_foot_r_b" class="body-part" d="M 189 492 L 246 492 L 256 558 L 195 558 Z" onclick="togglePart('ch_foot_r_b')" />
-            <text class="part-title" id="t-ch_foot_r_b" x="222" y="521">PIĘTA</text>
-            <text class="part-label" id="lbl-ch_foot_r_b" x="222" y="538" font-size="8.5">1,75%</text>
+            <path id="part-ch_foot_r_b" class="body-part" d="M 189 510 L 246 510 L 256 576 L 195 576 Z" onclick="togglePart('ch_foot_r_b')" />
+            <text class="part-title" id="t-ch_foot_r_b" x="222" y="539">PIĘTA</text>
+            <text class="part-label" id="lbl-ch_foot_r_b" x="222" y="556" font-size="8.5">1,75%</text>
           </g>
         </svg>
       </div>
@@ -1003,7 +1011,7 @@
 
   <!-- Dyskretny podpis na samym dole pod wszystkim -->
   <div class="app-footer">
-    created by B. Jarosz
+    created by B. Jarosz wer. 1.1
   </div>
 
 </div>
