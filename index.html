@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kalkulator Oparzeń i Płynoterapii</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --burn-color: #ef4444;
+      --burn-stroke: #991b1b;
+      --skin: #f1f5f9;
+      --skin-stroke: #94a3b8;
+      --primary-red: #dc2626;
+      --primary-dark: #991b1b;
+      --accent-blue: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 8px 6px 30px;
+      min-height: 100vh;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 660px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Nawigacja górna */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px;
+    }
+
+    .back-btn {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .header-text {
+      text-align: center;
+      flex: 1;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #b91c1c;
+      letter-spacing: -0.3px;
+    }
+
+    .subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    /* EKRAN STARTOWY */
+    #screen-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 4px 2px;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, #dc2626, #991b1b);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 20px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.25);
+    }
+
+    .hero-left h1 {
+      font-size: 1.4rem;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    .hero-left p {
+      font-size: 0.82rem;
+      color: #fee2e2;
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    .hero-svg {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .menu-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 18px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      transition: all 0.15s ease;
+    }
+
+    .menu-card:active {
+      transform: scale(0.98);
+      border-color: var(--primary-red);
+      background: #fff5f5;
+    }
+
+    .menu-badge-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .badge-adult { background: #fee2e2; border: 1px solid #fecaca; }
+    .badge-child { background: #ffedd5; border: 1px solid #fed7aa; }
+    .badge-parkland { background: #e0f2fe; border: 1px solid #bae6fd; }
+
+    .menu-info h2 {
+      font-size: 1.12rem;
+      font-weight: 900;
+      color: #0f172a;
+    }
+
+    .menu-info p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    /* Grupy wiekowe dziecka */
+    .child-age-box {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .age-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .age-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .age-btn {
+      padding: 9px 2px;
+      background: #f8fafc;
+      border: 1.5px solid var(--card-border);
+      border-radius: 8px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #334155;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .age-btn.active {
+      background: #ea580c;
+      border-color: #ea580c;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+    }
+
+    /* Karta sylwetki */
+    .silhouette-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 12px 6px 8px;
+      border: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .sil-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 8px 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #475569;
+    }
+
+    .reset-btn {
+      color: #dc2626;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .svg-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    /* Styl segmentów ciała */
+    .body-part {
+      fill: var(--skin);
+      stroke: var(--skin-stroke);
+      stroke-width: 1.5;
+      stroke-linejoin: round;
+      cursor: pointer;
+      transition: fill 0.1s ease, stroke 0.1s ease;
+    }
+
+    .body-part:active {
+      fill: #cbd5e1;
+    }
+
+    .body-part.active {
+      fill: var(--burn-color) !important;
+      stroke: var(--burn-stroke) !important;
+    }
+
+    /* Etykiety tekstowe wewnątrz części ciała */
+    .part-title {
+      font-size: 8px;
+      font-weight: 800;
+      fill: #475569;
+      pointer-events: none;
+      text-anchor: middle;
+      dominant-baseline: central;
+      letter-spacing: -0.2px;
+    }
+
+    .part-label {
+      font-size: 10.5px;
+      font-weight: 900;
+      fill: #0f172a;
+      pointer-events: none;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .part-label.active-label,
+    .part-title.active-label {
+      fill: #ffffff !important;
+    }
+
+    /* Pasek podsumowania Powierzchni Oparzenia */
+    .tbsa-result-card {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+    }
+
+    .tbsa-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      opacity: 0.9;
+    }
+
+    .tbsa-desc {
+      font-size: 0.76rem;
+      margin-top: 2px;
+      opacity: 0.95;
+    }
+
+    .tbsa-val {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .tbsa-unit {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-left: 2px;
+    }
+
+    /* Sekcja Parklanda */
+    .parkland-section {
+      background: #ffffff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .parkland-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .parkland-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+
+    .parkland-formula {
+      font-size: 0.74rem;
+      color: #1d4ed8;
+      font-weight: 800;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .input-box {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .input-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .input-val {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #0284c7;
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: #cbd5e1;
+      outline: none;
+      -webkit-appearance: none;
+      display: block;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #0284c7;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .parkland-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .parkland-card {
+      background: #f0f9ff;
+      border-radius: 10px;
+      padding: 10px 8px;
+      border: 1px solid #bae6fd;
+      text-align: center;
+    }
+
+    .card-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .card-val {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0369a1;
+      margin: 3px 0 1px;
+    }
+
+    .card-rate {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+
+    .total-24h-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+
+    .total-val {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #0284c7;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- EKRAN 1: MENU STARTOWE -->
+  <div id="screen-menu">
+    <div class="hero-banner">
+      <div class="hero-left">
+        <h1>Kalkulator Oparzeń</h1>
+        <p>Ocena powierzchni i reguła Parklanda</p>
+      </div>
+      <div class="hero-svg">
+        <svg viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="#ffffff" stroke-width="2" stroke-dasharray="3 3"/>
+          <path d="M24 10 C20 18 15 22 15 28 C15 33 19 37 24 37 C29 37 33 33 33 28 C33 22 28 18 24 10 Z" fill="#ffffff"/>
+          <path d="M24 18 C22 22 19 25 19 29 C19 32 21 34 24 34 C27 34 29 32 29 29 C29 25 26 22 24 18 Z" fill="#fecaca"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 3 Kafelki Wyboru -->
+    <div class="menu-grid">
+      <!-- 1. Dorosły -->
+      <div class="menu-card" onclick="openModule('adult')">
+        <div class="menu-badge-icon badge-adult">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="3"/>
+            <path d="M7 21v-7l2-3h6l2 3v7"/>
+            <path d="M9 14v7M15 14v7"/>
+          </svg>
+        </div>
+        <div class="menu-info">
+          <h2>Dorosły</h2>
+          <p>Reguła 9% Wallace'a • Przód i tył obok siebie</p>
+        </div>
+      </div>
+
+      <!-- 2. Dziecko -->
+      <div class="menu-card" onclick="openModule('child')">
+        <div class="menu-badge-icon badge-child">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="6" r="3.5"/>
+            <path d="M9 13a3 3 0 0 0-3 3v4a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a3 3 0 0 0-3-3H9z"/>
+          </svg>
+        </div>
+        <div class="menu-info">
+          <h2>Dziecko</h2>
+          <p>Tabela Lund-Browder • Proporcje pediatryczne</p>
+        </div>
+      </div>
+
+      <!-- 3. Płynoterapia Parkland -->
+      <div class="menu-card" onclick="openModule('parkland_only')">
+        <div class="menu-badge-icon badge-parkland">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <div class="menu-info">
+          <h2>Płynoterapia Parkland</h2>
+          <p>Szybki kalkulator resuscytacji płynowej 24h</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EKRAN 2: MODUŁ SYLWETKI (DOROSŁY LUB DZIECKO) -->
+  <div id="screen-body" class="hidden">
+    <div class="top-bar">
+      <button class="back-btn" onclick="goToMenu()">← Menu</button>
+      <div class="header-text">
+        <h1 id="body-module-title">Dorosły</h1>
+        <div class="subtitle" id="body-module-subtitle">PRZÓD I TYŁ</div>
+      </div>
+      <div style="width: 70px;"></div>
+    </div>
+
+    <!-- Grupa wiekowa u dziecka -->
+    <div id="child-age-box" class="child-age-box hidden">
+      <div class="age-row">
+        <span>Wiek dziecka:</span>
+        <span id="child-age-name" style="color:#ea580c; font-weight:800;">1. – 4. r.ż.</span>
+      </div>
+      <div class="age-grid">
+        <button class="age-btn" id="btn-newborn" onclick="setChildAge('newborn')">Noworodek</button>
+        <button class="age-btn active" id="btn-1_4" onclick="setChildAge('1_4')">1–4 r.ż.</button>
+        <button class="age-btn" id="btn-5_9" onclick="setChildAge('5_9')">5–9 r.ż.</button>
+        <button class="age-btn" id="btn-9_14" onclick="setChildAge('9_14')">9–14 r.ż.</button>
+      </div>
+    </div>
+
+    <!-- Karta sylwetek: PRZÓD I TYŁ ROZCIĄGNIĘTE W PIONIE I POZIOMIE -->
+    <div class="silhouette-card">
+      <div class="sil-header">
+        <span>Dotknij segmentu, aby zaznaczyć:</span>
+        <span class="reset-btn" onclick="resetSelection()">Wyczyść</span>
+      </div>
+
+      <!-- SYLWETKA DOROSŁEGO (viewBox 680x600, nagłówki y=24, głowa od y=56) -->
+      <div id="view-adult-container" class="svg-container">
+        <svg viewBox="0 0 680 600">
+          <!-- DOROSŁY PRZÓD (Centrum x=165) -->
+          <g id="ad-front" transform="translate(0, 0)">
+            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">PRZÓD</text>
+
+            <!-- Głowa przód (4.5%) -->
+            <path id="part-ad_head_f" class="body-part" d="M 130 56 C 130 42 200 42 200 56 C 208 86 202 116 165 116 C 128 116 122 86 130 56 Z" onclick="togglePart('ad_head_f')" />
+            <text class="part-title" id="t-ad_head_f" x="165" y="78">GŁOWA</text>
+            <text class="part-label" id="lbl-ad_head_f" x="165" y="96">4,5%</text>
+
+            <rect id="part-ad_neck_f" class="body-part" x="151" y="116" width="28" height="14" rx="2" onclick="togglePart('ad_neck_f')" />
+
+            <!-- TUŁÓW PRZÓD: 4 KWADRANTY (PO 4.5% KAŻDY) -->
+            <!-- Klatka Lewa -->
+            <path id="part-ad_torso_lu_f" class="body-part" d="M 106 132 L 162 132 L 162 204 L 111 204 Z" onclick="togglePart('ad_torso_lu_f')" />
+            <text class="part-title" id="t-ad_torso_lu_f" x="134" y="160">KLATKA</text>
+            <text class="part-label" id="lbl-ad_torso_lu_f" x="134" y="178">4,5%</text>
+
+            <!-- Klatka Prawa -->
+            <path id="part-ad_torso_ru_f" class="body-part" d="M 168 132 L 224 132 L 219 204 L 168 204 Z" onclick="togglePart('ad_torso_ru_f')" />
+            <text class="part-title" id="t-ad_torso_ru_f" x="196" y="160">KLATKA</text>
+            <text class="part-label" id="lbl-ad_torso_ru_f" x="196" y="178">4,5%</text>
+
+            <!-- Brzuch Lewy -->
+            <path id="part-ad_torso_ll_f" class="body-part" d="M 111 208 L 162 208 L 162 274 L 116 274 Z" onclick="togglePart('ad_torso_ll_f')" />
+            <text class="part-title" id="t-ad_torso_ll_f" x="136" y="233">BRZUCH</text>
+            <text class="part-label" id="lbl-ad_torso_ll_f" x="136" y="251">4,5%</text>
+
+            <!-- Brzuch Prawy -->
+            <path id="part-ad_torso_rl_f" class="body-part" d="M 168 208 L 219 208 L 214 274 L 168 274 Z" onclick="togglePart('ad_torso_rl_f')" />
+            <text class="part-title" id="t-ad_torso_rl_f" x="194" y="233">BRZUCH</text>
+            <text class="part-label" id="lbl-ad_torso_rl_f" x="194" y="251">4,5%</text>
+
+            <!-- Ramię (2%) -->
+            <path id="part-ad_arm_l_f" class="body-part" d="M 104 134 L 64 154 L 48 212 L 86 212 L 104 182 Z" onclick="togglePart('ad_arm_l_f')" />
+            <text class="part-title" id="t-ad_arm_l_f" x="74" y="172">RAMIĘ</text>
+            <text class="part-label" id="lbl-ad_arm_l_f" x="74" y="188">2%</text>
+
+            <!-- Przedramię (1.5%) -->
+            <path id="part-ad_forearm_l_f" class="body-part" d="M 47 216 L 85 216 L 72 284 L 34 284 Z" onclick="togglePart('ad_forearm_l_f')" />
+            <text class="part-title" id="t-ad_forearm_l_f" x="58" y="242">PRZEDR.</text>
+            <text class="part-label" id="lbl-ad_forearm_l_f" x="58" y="258">1,5%</text>
+
+            <!-- Dłoń (1%) -->
+            <path id="part-ad_hand_l_f" class="body-part" d="M 33 288 L 70 288 L 59 340 L 20 340 Z" onclick="togglePart('ad_hand_l_f')" />
+            <text class="part-title" id="t-ad_hand_l_f" x="44" y="308">DŁOŃ</text>
+            <text class="part-label" id="lbl-ad_hand_l_f" x="44" y="323">1%</text>
+
+            <!-- Ramię (2%) -->
+            <path id="part-ad_arm_r_f" class="body-part" d="M 226 134 L 266 154 L 282 212 L 244 212 L 226 182 Z" onclick="togglePart('ad_arm_r_f')" />
+            <text class="part-title" id="t-ad_arm_r_f" x="256" y="172">RAMIĘ</text>
+            <text class="part-label" id="lbl-ad_arm_r_f" x="256" y="188">2%</text>
+
+            <!-- Przedramię (1.5%) -->
+            <path id="part-ad_forearm_r_f" class="body-part" d="M 283 216 L 245 216 L 258 284 L 296 284 Z" onclick="togglePart('ad_forearm_r_f')" />
+            <text class="part-title" id="t-ad_forearm_r_f" x="272" y="242">PRZEDR.</text>
+            <text class="part-label" id="lbl-ad_forearm_r_f" x="272" y="258">1,5%</text>
+
+            <!-- Dłoń (1%) -->
+            <path id="part-ad_hand_r_f" class="body-part" d="M 297 288 L 260 288 L 271 340 L 310 340 Z" onclick="togglePart('ad_hand_r_f')" />
+            <text class="part-title" id="t-ad_hand_r_f" x="286" y="308">DŁOŃ</text>
+            <text class="part-label" id="lbl-ad_hand_r_f" x="286" y="323">1%</text>
+
+            <!-- Krocze (1%) -->
+            <polygon id="part-ad_groin" class="body-part" points="149,275 181,275 165,302" onclick="togglePart('ad_groin')" />
+            <text class="part-label" id="lbl-ad_groin" x="165" y="287" font-size="8.5">1%</text>
+
+            <!-- Udo (4.5%) -->
+            <path id="part-ad_thigh_l_f" class="body-part" d="M 116 275 L 146 275 L 156 302 L 153 408 L 104 408 L 109 315 Z" onclick="togglePart('ad_thigh_l_f')" />
+            <text class="part-title" id="t-ad_thigh_l_f" x="130" y="344">UDO</text>
+            <text class="part-label" id="lbl-ad_thigh_l_f" x="130" y="364">4,5%</text>
+
+            <!-- Podudzie+Stopa (4.5%) -->
+            <path id="part-ad_calf_l_f" class="body-part" d="M 104 412 L 153 412 L 148 528 L 136 575 L 100 575 L 98 528 Z" onclick="togglePart('ad_calf_l_f')" />
+            <text class="part-title" id="t-ad_calf_l_f" x="124" y="478">POD.+STOPA</text>
+            <text class="part-label" id="lbl-ad_calf_l_f" x="124" y="498">4,5%</text>
+
+            <!-- Udo (4.5%) -->
+            <path id="part-ad_thigh_r_f" class="body-part" d="M 214 275 L 184 275 L 174 302 L 177 408 L 226 408 L 221 315 Z" onclick="togglePart('ad_thigh_r_f')" />
+            <text class="part-title" id="t-ad_thigh_r_f" x="200" y="344">UDO</text>
+            <text class="part-label" id="lbl-ad_thigh_r_f" x="200" y="364">4,5%</text>
+
+            <!-- Podudzie+Stopa (4.5%) -->
+            <path id="part-ad_calf_r_f" class="body-part" d="M 226 412 L 177 412 L 182 528 L 194 575 L 230 575 L 232 528 Z" onclick="togglePart('ad_calf_r_f')" />
+            <text class="part-title" id="t-ad_calf_r_f" x="206" y="478">POD.+STOPA</text>
+            <text class="part-label" id="lbl-ad_calf_r_f" x="206" y="498">4,5%</text>
+          </g>
+
+          <!-- DOROSŁY TYŁ (Centrum x=515) -->
+          <g id="ad-back" transform="translate(350, 0)">
+            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">TYŁ</text>
+
+            <!-- Głowa tył (4.5%) -->
+            <path id="part-ad_head_b" class="body-part" d="M 130 56 C 130 42 200 42 200 56 C 208 86 202 116 165 116 C 128 116 122 86 130 56 Z" onclick="togglePart('ad_head_b')" />
+            <text class="part-title" id="t-ad_head_b" x="165" y="78">GŁOWA</text>
+            <text class="part-label" id="lbl-ad_head_b" x="165" y="96">4,5%</text>
+
+            <rect id="part-ad_neck_b" class="body-part" x="151" y="116" width="28" height="14" rx="2" onclick="togglePart('ad_neck_b')" />
+
+            <!-- PLECY: 4 KWADRANTY (PO 4.5% KAŻDY) -->
+            <path id="part-ad_torso_lu_b" class="body-part" d="M 106 132 L 162 132 L 162 204 L 111 204 Z" onclick="togglePart('ad_torso_lu_b')" />
+            <text class="part-title" id="t-ad_torso_lu_b" x="134" y="160">GÓRA</text>
+            <text class="part-label" id="lbl-ad_torso_lu_b" x="134" y="178">4,5%</text>
+
+            <path id="part-ad_torso_ru_b" class="body-part" d="M 168 132 L 224 132 L 219 204 L 168 204 Z" onclick="togglePart('ad_torso_ru_b')" />
+            <text class="part-title" id="t-ad_torso_ru_b" x="196" y="160">GÓRA</text>
+            <text class="part-label" id="lbl-ad_torso_ru_b" x="196" y="178">4,5%</text>
+
+            <path id="part-ad_torso_ll_b" class="body-part" d="M 111 208 L 162 208 L 162 274 L 116 274 Z" onclick="togglePart('ad_torso_ll_b')" />
+            <text class="part-title" id="t-ad_torso_ll_b" x="136" y="233">DÓŁ</text>
+            <text class="part-label" id="lbl-ad_torso_ll_b" x="136" y="251">4,5%</text>
+
+            <path id="part-ad_torso_rl_b" class="body-part" d="M 168 208 L 219 208 L 214 274 L 168 274 Z" onclick="togglePart('ad_torso_rl_b')" />
+            <text class="part-title" id="t-ad_torso_rl_b" x="194" y="233">DÓŁ</text>
+            <text class="part-label" id="lbl-ad_torso_rl_b" x="194" y="251">4,5%</text>
+
+            <!-- Ramię (2%) -->
+            <path id="part-ad_arm_l_b" class="body-part" d="M 104 134 L 64 154 L 48 212 L 86 212 L 104 182 Z" onclick="togglePart('ad_arm_l_b')" />
+            <text class="part-title" id="t-ad_arm_l_b" x="74" y="172">RAMIĘ</text>
+            <text class="part-label" id="lbl-ad_arm_l_b" x="74" y="188">2%</text>
+
+            <!-- Przedramię (1.5%) -->
+            <path id="part-ad_forearm_l_b" class="body-part" d="M 49 216 L 85 216 L 72 284 L 34 284 Z" onclick="togglePart('ad_forearm_l_b')" />
+            <text class="part-title" id="t-ad_forearm_l_b" x="58" y="242">PRZEDR.</text>
+            <text class="part-label" id="lbl-ad_forearm_l_b" x="58" y="258">1,5%</text>
+
+            <!-- Dłoń (1%) -->
+            <path id="part-ad_hand_l_b" class="body-part" d="M 33 288 L 70 288 L 59 340 L 20 340 Z" onclick="togglePart('ad_hand_l_b')" />
+            <text class="part-title" id="t-ad_hand_l_b" x="44" y="308">DŁOŃ</text>
+            <text class="part-label" id="lbl-ad_hand_l_b" x="44" y="323">1%</text>
+
+            <!-- Ramię (2%) -->
+            <path id="part-ad_arm_r_b" class="body-part" d="M 226 134 L 266 154 L 282 212 L 244 212 L 226 182 Z" onclick="togglePart('ad_arm_r_b')" />
+            <text class="part-title" id="t-ad_arm_r_b" x="256" y="172">RAMIĘ</text>
+            <text class="part-label" id="lbl-ad_arm_r_b" x="256" y="188">2%</text>
+
+            <!-- Przedramię (1.5%) -->
+            <path id="part-ad_forearm_r_b" class="body-part" d="M 281 216 L 245 216 L 258 284 L 296 284 Z" onclick="togglePart('ad_forearm_r_b')" />
+            <text class="part-title" id="t-ad_forearm_r_b" x="272" y="242">PRZEDR.</text>
+            <text class="part-label" id="lbl-ad_forearm_r_b" x="272" y="258">1,5%</text>
+
+            <!-- Dłoń (1%) -->
+            <path id="part-ad_hand_r_b" class="body-part" d="M 297 288 L 260 288 L 271 340 L 310 340 Z" onclick="togglePart('ad_hand_r_b')" />
+            <text class="part-title" id="t-ad_hand_r_b" x="286" y="308">DŁOŃ</text>
+            <text class="part-label" id="lbl-ad_hand_r_b" x="286" y="323">1%</text>
+
+            <!-- Udo (4.5%) -->
+            <path id="part-ad_thigh_l_b" class="body-part" d="M 116 275 L 160 275 L 153 408 L 104 408 L 109 315 Z" onclick="togglePart('ad_thigh_l_b')" />
+            <text class="part-title" id="t-ad_thigh_l_b" x="131" y="344">UDO</text>
+            <text class="part-label" id="lbl-ad_thigh_l_b" x="131" y="364">4,5%</text>
+
+            <!-- Podudzie+Stopa (4.5%) -->
+            <path id="part-ad_calf_l_b" class="body-part" d="M 104 412 L 153 412 L 148 528 L 136 575 L 100 575 L 98 528 Z" onclick="togglePart('ad_calf_l_b')" />
+            <text class="part-title" id="t-ad_calf_l_b" x="124" y="478">POD.+STOPA</text>
+            <text class="part-label" id="lbl-ad_calf_l_b" x="124" y="498">4,5%</text>
+
+            <!-- Udo (4.5%) -->
+            <path id="part-ad_thigh_r_b" class="body-part" d="M 214 275 L 170 275 L 177 408 L 226 408 L 221 315 Z" onclick="togglePart('ad_thigh_r_b')" />
+            <text class="part-title" id="t-ad_thigh_r_b" x="199" y="344">UDO</text>
+            <text class="part-label" id="lbl-ad_thigh_r_b" x="199" y="364">4,5%</text>
+
+            <!-- Podudzie+Stopa (4.5%) -->
+            <path id="part-ad_calf_r_b" class="body-part" d="M 226 412 L 177 412 L 182 528 L 194 575 L 230 575 L 232 528 Z" onclick="togglePart('ad_calf_r_b')" />
+            <text class="part-title" id="t-ad_calf_r_b" x="206" y="478">POD.+STOPA</text>
+            <text class="part-label" id="lbl-ad_calf_r_b" x="206" y="498">4,5%</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- SYLWETKA DZIECKA (viewBox 680x600, nagłówki y=24, głowa od y=42 z wolną przestrzenią) -->
+      <div id="view-child-container" class="svg-container hidden">
+        <svg viewBox="0 0 680 600">
+          <!-- DZIECKO PRZÓD (Centrum x=165) -->
+          <g id="ch-front" transform="translate(0, 0)">
+            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">PRZÓD</text>
+
+            <!-- Głowa przód (cy=82, ry=42 -> wierzchołek głowy to y=40, wolna przestrzeń od napisu wynosi 16px!) -->
+            <ellipse id="part-ch_head_f" class="body-part" cx="165" cy="82" rx="55" ry="42" onclick="togglePart('ch_head_f')" />
+            <text class="part-title" id="t-ch_head_f" x="165" y="72">GŁOWA</text>
+            <text class="part-label" id="lbl-ch_head_f" x="165" y="90" font-size="12">8,5%</text>
+
+            <!-- Szyja -->
+            <rect id="part-ch_neck_f" class="body-part" x="146" y="126" width="38" height="14" rx="2" onclick="togglePart('ch_neck_f')" />
+            <text class="part-label" id="lbl-ch_neck_f" x="165" y="133" font-size="8">1%</text>
+
+            <!-- TUŁÓW DZIECKA PRZÓD: 4 KWADRANTY (PO 3.25%) -->
+            <path id="part-ch_torso_lu_f" class="body-part" d="M 104 142 L 162 142 L 162 206 L 96 206 C 94 182 97 160 104 142 Z" onclick="togglePart('ch_torso_lu_f')" />
+            <text class="part-title" id="t-ch_torso_lu_f" x="132" y="168">KLATKA</text>
+            <text class="part-label" id="lbl-ch_torso_lu_f" x="132" y="186">3,25%</text>
+
+            <path id="part-ch_torso_ru_f" class="body-part" d="M 168 142 L 226 142 C 233 160 236 182 234 206 L 168 206 Z" onclick="togglePart('ch_torso_ru_f')" />
+            <text class="part-title" id="t-ch_torso_ru_f" x="198" y="168">KLATKA</text>
+            <text class="part-label" id="lbl-ch_torso_ru_f" x="198" y="186">3,25%</text>
+
+            <path id="part-ch_torso_ll_f" class="body-part" d="M 96 210 L 162 210 L 162 268 C 144 271 125 269 112 266 C 104 254 98 234 96 210 Z" onclick="togglePart('ch_torso_ll_f')" />
+            <text class="part-title" id="t-ch_torso_ll_f" x="132" y="232">BRZUCH</text>
+            <text class="part-label" id="lbl-ch_torso_ll_f" x="132" y="249">3,25%</text>
+
+            <path id="part-ch_torso_rl_f" class="body-part" d="M 168 210 L 234 210 C 232 234 226 254 218 266 C 205 269 186 271 168 268 Z" onclick="togglePart('ch_torso_rl_f')" />
+            <text class="part-title" id="t-ch_torso_rl_f" x="198" y="232">BRZUCH</text>
+            <text class="part-label" id="lbl-ch_torso_rl_f" x="198" y="249">3,25%</text>
+
+            <!-- Ramię (2%) -->
+            <path id="part-ch_arm_l_f" class="body-part" d="M 102 144 L 58 164 L 40 216 L 80 216 L 100 182 Z" onclick="togglePart('ch_arm_l_f')" />
+            <text class="part-title" id="t-ch_arm_l_f" x="70" y="182">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_l_f" x="70" y="197">2%</text>
+
+            <!-- Przedramię (1.5%) -->
+            <path id="part-ch_forearm_l_f" class="body-part" d="M 38 220 L 79 220 L 65 278 L 24 278 Z" onclick="togglePart('ch_forearm_l_f')" />
+            <text class="part-title" id="t-ch_forearm_l_f" x="52" y="244">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_l_f" x="52" y="259">1,5%</text>
+
+            <!-- Dłoń (1.25%) -->
+            <path id="part-ch_hand_l_f" class="body-part" d="M 22 282 L 64 282 L 51 328 L 10 328 Z" onclick="togglePart('ch_hand_l_f')" />
+            <text class="part-title" id="t-ch_hand_l_f" x="37" y="300">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_l_f" x="37" y="314" font-size="8">1,25%</text>
+
+            <!-- Ramię (2%) -->
+            <path id="part-ch_arm_r_f" class="body-part" d="M 228 144 L 272 164 L 290 216 L 250 216 L 230 182 Z" onclick="togglePart('ch_arm_r_f')" />
+            <text class="part-title" id="t-ch_arm_r_f" x="260" y="182">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_r_f" x="260" y="197">2%</text>
+
+            <!-- Przedramię (1.5%) -->
+            <path id="part-ch_forearm_r_f" class="body-part" d="M 292 220 L 251 220 L 265 278 L 306 278 Z" onclick="togglePart('ch_forearm_r_f')" />
+            <text class="part-title" id="t-ch_forearm_r_f" x="278" y="244">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_r_f" x="278" y="259">1,5%</text>
+
+            <!-- Dłoń (1.25%) -->
+            <path id="part-ch_hand_r_f" class="body-part" d="M 308 282 L 266 282 L 279 328 L 320 328 Z" onclick="togglePart('ch_hand_r_f')" />
+            <text class="part-title" id="t-ch_hand_r_f" x="293" y="300">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_r_f" x="293" y="314" font-size="8">1,25%</text>
+
+            <!-- Krocze (1%) -->
+            <polygon id="part-ch_groin" class="body-part" points="149,270 181,270 165,292" onclick="togglePart('ch_groin')" />
+            <text class="part-label" id="lbl-ch_groin" x="165" y="280" font-size="8">1%</text>
+
+            <!-- Udo -->
+            <path id="part-ch_thigh_l_f" class="body-part" d="M 112 270 L 147 270 L 157 292 L 152 374 L 98 374 L 102 308 Z" onclick="togglePart('ch_thigh_l_f')" />
+            <text class="part-title" id="t-ch_thigh_l_f" x="127" y="314">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_l_f" x="127" y="332">3,25%</text>
+
+            <!-- Podudzie -->
+            <path id="part-ch_calf_l_f" class="body-part" d="M 98 378 L 152 378 L 145 468 L 92 468 Z" onclick="togglePart('ch_calf_l_f')" />
+            <text class="part-title" id="t-ch_calf_l_f" x="122" y="414">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_l_f" x="122" y="431">2,5%</text>
+
+            <!-- Stopa (1.75%) -->
+            <path id="part-ch_foot_l_f" class="body-part" d="M 92 472 L 145 472 L 139 532 L 82 532 Z" onclick="togglePart('ch_foot_l_f')" />
+            <text class="part-title" id="t-ch_foot_l_f" x="114" y="496">STOPA</text>
+            <text class="part-label" id="lbl-ch_foot_l_f" x="114" y="512" font-size="8.5">1,75%</text>
+
+            <!-- Udo -->
+            <path id="part-ch_thigh_r_f" class="body-part" d="M 218 270 L 183 270 L 173 292 L 178 374 L 232 374 L 228 308 Z" onclick="togglePart('ch_thigh_r_f')" />
+            <text class="part-title" id="t-ch_thigh_r_f" x="203" y="314">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_r_f" x="203" y="332">3,25%</text>
+
+            <!-- Podudzie -->
+            <path id="part-ch_calf_r_f" class="body-part" d="M 232 378 L 178 378 L 185 468 L 238 468 Z" onclick="togglePart('ch_calf_r_f')" />
+            <text class="part-title" id="t-ch_calf_r_f" x="208" y="414">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_r_f" x="208" y="431">2,5%</text>
+
+            <!-- Stopa (1.75%) -->
+            <path id="part-ch_foot_r_f" class="body-part" d="M 238 472 L 185 472 L 191 532 L 248 532 Z" onclick="togglePart('ch_foot_r_f')" />
+            <text class="part-title" id="t-ch_foot_r_f" x="216" y="496">STOPA</text>
+            <text class="part-label" id="lbl-ch_foot_r_f" x="216" y="512" font-size="8.5">1,75%</text>
+          </g>
+
+          <!-- DZIECKO TYŁ (Centrum x=515) -->
+          <g id="ch-back" transform="translate(350, 0)">
+            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">TYŁ</text>
+
+            <!-- Głowa tył -->
+            <ellipse id="part-ch_head_b" class="body-part" cx="165" cy="82" rx="55" ry="42" onclick="togglePart('ch_head_b')" />
+            <text class="part-title" id="t-ch_head_b" x="165" y="72">GŁOWA</text>
+            <text class="part-label" id="lbl-ch_head_b" x="165" y="90" font-size="12">8,5%</text>
+
+            <rect id="part-ch_neck_b" class="body-part" x="146" y="126" width="38" height="14" rx="2" onclick="togglePart('ch_neck_b')" />
+            <text class="part-label" id="lbl-ch_neck_b" x="165" y="133" font-size="8">1%</text>
+
+            <!-- PLECY DZIECKA: 4 KWADRANTY -->
+            <path id="part-ch_torso_lu_b" class="body-part" d="M 104 142 L 162 142 L 162 206 L 96 206 C 94 182 97 160 104 142 Z" onclick="togglePart('ch_torso_lu_b')" />
+            <text class="part-title" id="t-ch_torso_lu_b" x="132" y="168">GÓRA</text>
+            <text class="part-label" id="lbl-ch_torso_lu_b" x="132" y="186">3,25%</text>
+
+            <path id="part-ch_torso_ru_b" class="body-part" d="M 168 142 L 226 142 C 233 160 236 182 234 206 L 168 206 Z" onclick="togglePart('ch_torso_ru_b')" />
+            <text class="part-title" id="t-ch_torso_ru_b" x="198" y="168">GÓRA</text>
+            <text class="part-label" id="lbl-ch_torso_ru_b" x="198" y="186">3,25%</text>
+
+            <path id="part-ch_torso_ll_b" class="body-part" d="M 96 210 L 162 210 L 162 268 C 144 271 125 269 112 266 C 104 254 98 234 96 210 Z" onclick="togglePart('ch_torso_ll_b')" />
+            <text class="part-title" id="t-ch_torso_ll_b" x="132" y="232">DÓŁ</text>
+            <text class="part-label" id="lbl-ch_torso_ll_b" x="132" y="249">3,25%</text>
+
+            <path id="part-ch_torso_rl_b" class="body-part" d="M 168 210 L 234 210 C 232 234 226 254 218 266 C 205 269 186 271 168 268 Z" onclick="togglePart('ch_torso_rl_b')" />
+            <text class="part-title" id="t-ch_torso_rl_b" x="198" y="232">DÓŁ</text>
+            <text class="part-label" id="lbl-ch_torso_rl_b" x="198" y="249">3,25%</text>
+
+            <!-- Ręce tył -->
+            <path id="part-ch_arm_l_b" class="body-part" d="M 102 144 L 58 164 L 40 216 L 80 216 L 100 182 Z" onclick="togglePart('ch_arm_l_b')" />
+            <text class="part-title" id="t-ch_arm_l_b" x="70" y="182">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_l_b" x="70" y="197">2%</text>
+
+            <path id="part-ch_forearm_l_b" class="body-part" d="M 38 220 L 79 220 L 65 278 L 24 278 Z" onclick="togglePart('ch_forearm_l_b')" />
+            <text class="part-title" id="t-ch_forearm_l_b" x="52" y="244">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_l_b" x="52" y="259">1,5%</text>
+
+            <path id="part-ch_hand_l_b" class="body-part" d="M 22 282 L 64 282 L 51 328 L 10 328 Z" onclick="togglePart('ch_hand_l_b')" />
+            <text class="part-title" id="t-ch_hand_l_b" x="37" y="300">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_l_b" x="37" y="314" font-size="8">1,25%</text>
+
+            <path id="part-ch_arm_r_b" class="body-part" d="M 228 144 L 272 164 L 290 216 L 250 216 L 230 182 Z" onclick="togglePart('ch_arm_r_b')" />
+            <text class="part-title" id="t-ch_arm_r_b" x="260" y="182">RAMIĘ</text>
+            <text class="part-label" id="lbl-ch_arm_r_b" x="260" y="197">2%</text>
+
+            <path id="part-ch_forearm_r_b" class="body-part" d="M 292 220 L 251 220 L 265 278 L 306 278 Z" onclick="togglePart('ch_forearm_r_b')" />
+            <text class="part-title" id="t-ch_forearm_r_b" x="278" y="244">PRZEDR.</text>
+            <text class="part-label" id="lbl-ch_forearm_r_b" x="278" y="259">1,5%</text>
+
+            <!-- Dłoń (1.25%) -->
+            <path id="part-ch_hand_r_b" class="body-part" d="M 308 282 L 266 282 L 279 328 L 320 328 Z" onclick="togglePart('ch_hand_r_b')" />
+            <text class="part-title" id="t-ch_hand_r_b" x="293" y="300">RĘKA</text>
+            <text class="part-label" id="lbl-ch_hand_r_b" x="293" y="314" font-size="8">1,25%</text>
+
+            <!-- Pośladki -->
+            <path id="part-ch_buttock_l" class="body-part" d="M 106 266 L 162 266 L 157 304 L 100 304 Z" onclick="togglePart('ch_buttock_l')" />
+            <text class="part-title" id="t-ch_buttock_l" x="131" y="280">POŚLADEK</text>
+            <text class="part-label" id="lbl-ch_buttock_l" x="131" y="293" font-size="8">2,5%</text>
+
+            <path id="part-ch_buttock_r" class="body-part" d="M 168 266 L 224 266 L 230 304 L 173 304 Z" onclick="togglePart('ch_buttock_r')" />
+            <text class="part-title" id="t-ch_buttock_r" x="199" y="280">POŚLADEK</text>
+            <text class="part-label" id="lbl-ch_buttock_r" x="199" y="293" font-size="8">2,5%</text>
+
+            <!-- Udo -->
+            <path id="part-ch_thigh_l_b" class="body-part" d="M 100 306 L 157 306 L 152 374 L 98 374 Z" onclick="togglePart('ch_thigh_l_b')" />
+            <text class="part-title" id="t-ch_thigh_l_b" x="126" y="334">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_l_b" x="126" y="352">3,25%</text>
+
+            <!-- Podudzie -->
+            <path id="part-ch_calf_l_b" class="body-part" d="M 98 378 L 152 378 L 145 468 L 92 468 Z" onclick="togglePart('ch_calf_l_b')" />
+            <text class="part-title" id="t-ch_calf_l_b" x="122" y="414">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_l_b" x="122" y="431">2,5%</text>
+
+            <!-- Stopa (1.75%) -->
+            <path id="part-ch_foot_l_b" class="body-part" d="M 92 472 L 145 472 L 139 532 L 82 532 Z" onclick="togglePart('ch_foot_l_b')" />
+            <text class="part-title" id="t-ch_foot_l_b" x="114" y="496">PIĘTA</text>
+            <text class="part-label" id="lbl-ch_foot_l_b" x="114" y="512" font-size="8.5">1,75%</text>
+
+            <!-- Udo -->
+            <path id="part-ch_thigh_r_b" class="body-part" d="M 173 306 L 230 306 L 232 374 L 178 374 Z" onclick="togglePart('ch_thigh_r_b')" />
+            <text class="part-title" id="t-ch_thigh_r_b" x="204" y="334">UDO</text>
+            <text class="part-label" id="lbl-ch_thigh_r_b" x="204" y="352">3,25%</text>
+
+            <!-- Podudzie -->
+            <path id="part-ch_calf_r_b" class="body-part" d="M 178 378 L 232 378 L 238 468 L 185 468 Z" onclick="togglePart('ch_calf_r_b')" />
+            <text class="part-title" id="t-ch_calf_r_b" x="208" y="414">PODUDZIE</text>
+            <text class="part-label" id="lbl-ch_calf_r_b" x="208" y="431">2,5%</text>
+
+            <!-- Stopa (1.75%) -->
+            <path id="part-ch_foot_r_b" class="body-part" d="M 185 472 L 238 472 L 248 532 L 191 532 Z" onclick="togglePart('ch_foot_r_b')" />
+            <text class="part-title" id="t-ch_foot_r_b" x="216" y="496">PIĘTA</text>
+            <text class="part-label" id="lbl-ch_foot_r_b" x="216" y="512" font-size="8.5">1,75%</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Pasek Wyniku Powierzchni Oparzenia -->
+    <div class="tbsa-result-card">
+      <div>
+        <div class="tbsa-title">Powierzchnia oparzenia</div>
+        <div class="tbsa-desc" id="tbsa-desc-text">Dotknij części ciała, aby policzyć</div>
+      </div>
+      <div>
+        <span class="tbsa-val" id="tbsa-total">0</span><span class="tbsa-unit">%</span>
+      </div>
+    </div>
+
+    <!-- Płynoterapia powiązana z sylwetką -->
+    <div class="parkland-section">
+      <div class="parkland-header">
+        <div class="parkland-title">Płynoterapia Parklanda</div>
+        <div class="parkland-formula">4 ml × kg × % oparzenia</div>
+      </div>
+
+      <div class="input-box">
+        <div class="input-row">
+          <span>Masa ciała pacjenta:</span>
+          <span class="input-val" id="weight-text">70 kg</span>
+        </div>
+        <input type="range" id="weight-input" min="40" max="140" step="1" value="70" oninput="calculate()">
+      </div>
+
+      <div class="total-24h-box">
+        <div class="total-label">Całkowita objętość płynów (24h):</div>
+        <div class="total-val" id="val-24h">0 ml</div>
+      </div>
+
+      <div class="parkland-grid">
+        <div class="parkland-card">
+          <div class="card-label">Pierwsze 8 godzin (50%)</div>
+          <div class="card-val" id="val-8h">0 ml</div>
+          <div class="card-rate" id="rate-8h">0 ml / godz.</div>
+        </div>
+        <div class="parkland-card">
+          <div class="card-label">Kolejne 16 godzin (50%)</div>
+          <div class="card-val" id="val-16h">0 ml</div>
+          <div class="card-rate" id="rate-16h">0 ml / godz.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EKRAN 3: SAMODZIELNA PŁYNOTERAPIA METODĄ PARKLAND -->
+  <div id="screen-standalone-parkland" class="hidden">
+    <div class="top-bar">
+      <button class="back-btn" onclick="goToMenu()">← Menu</button>
+      <div class="header-text">
+        <h1 style="color:#0284c7">Kalkulator Parkland</h1>
+        <div class="subtitle">SAMODZIELNA PŁYNOTERAPIA</div>
+      </div>
+      <div style="width: 70px;"></div>
+    </div>
+
+    <div class="parkland-section" style="margin-top:6px;">
+      <div class="input-box">
+        <div class="input-row">
+          <span>Powierzchnia oparzenia (%):</span>
+          <span class="input-val" id="solo-tbsa-text">20%</span>
+        </div>
+        <input type="range" id="solo-tbsa" min="1" max="100" step="1" value="20" oninput="calculateSoloParkland()">
+      </div>
+
+      <div class="input-box">
+        <div class="input-row">
+          <span>Masa ciała pacjenta:</span>
+          <span class="input-val" id="solo-weight-text">70 kg</span>
+        </div>
+        <input type="range" id="solo-weight" min="2" max="140" step="1" value="70" oninput="calculateSoloParkland()">
+      </div>
+
+      <div class="total-24h-box">
+        <div class="total-label">Całkowita objętość płynów (24h):</div>
+        <div class="total-val" id="solo-val-24h" style="font-size:1.4rem;">5 600 ml</div>
+      </div>
+
+      <div class="parkland-grid">
+        <div class="parkland-card">
+          <div class="card-label">Pierwsze 8 godzin (50%)</div>
+          <div class="card-val" id="solo-val-8h">2 800 ml</div>
+          <div class="card-rate" id="solo-rate-8h">350 ml / godz.</div>
+        </div>
+        <div class="parkland-card">
+          <div class="card-label">Kolejne 16 godzin (50%)</div>
+          <div class="card-val" id="solo-val-16h">2 800 ml</div>
+          <div class="card-rate" id="solo-rate-16h">175 ml / godz.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentMode = 'adult';
+  let childAge = '1_4';
+  let activeParts = new Set();
+
+  const ageWeightConfig = {
+    newborn: { defaultWeight: 4,  min: 2,  max: 10 },
+    '1_4':   { defaultWeight: 14, min: 8,  max: 22 },
+    '5_9':   { defaultWeight: 24, min: 16, max: 38 },
+    '9_14':  { defaultWeight: 42, min: 28, max: 65 }
+  };
+
+  const adultPcts = {
+    ad_head_f: 4.5, ad_head_b: 4.5,
+    ad_neck_f: 0, ad_neck_b: 0,
+    ad_torso_lu_f: 4.5, ad_torso_ru_f: 4.5, ad_torso_ll_f: 4.5, ad_torso_rl_f: 4.5,
+    ad_torso_lu_b: 4.5, ad_torso_ru_b: 4.5, ad_torso_ll_b: 4.5, ad_torso_rl_b: 4.5,
+    ad_arm_l_f: 2.0, ad_arm_r_f: 2.0, ad_arm_l_b: 2.0, ad_arm_r_b: 2.0,
+    ad_forearm_l_f: 1.5, ad_forearm_r_f: 1.5, ad_forearm_l_b: 1.5, ad_forearm_r_b: 1.5,
+    ad_hand_l_f: 1.0, ad_hand_r_f: 1.0, ad_hand_l_b: 1.0, ad_hand_r_b: 1.0,
+    ad_groin: 1.0,
+    ad_thigh_l_f: 4.5, ad_thigh_r_f: 4.5, ad_thigh_l_b: 4.5, ad_thigh_r_b: 4.5,
+    ad_calf_l_f: 4.5, ad_calf_r_f: 4.5, ad_calf_l_b: 4.5, ad_calf_r_b: 4.5
+  };
+
+  const childTable = {
+    newborn: { headHalf: 9.5, thighHalf: 2.75, calfHalf: 2.5, footHalf: 1.75 },
+    '1_4':   { headHalf: 8.5, thighHalf: 3.25, calfHalf: 2.5, footHalf: 1.75 },
+    '5_9':   { headHalf: 6.5, thighHalf: 4.0,  calfHalf: 2.75, footHalf: 1.75 },
+    '9_14':  { headHalf: 5.5, thighHalf: 4.25, calfHalf: 3.0, footHalf: 1.75 }
+  };
+
+  function getChildPartWeight(partId, ageKey) {
+    const t = childTable[ageKey];
+    if (partId === 'ch_head_f' || partId === 'ch_head_b') return t.headHalf;
+    if (partId === 'ch_neck_f' || partId === 'ch_neck_b') return 1.0;
+    if (partId.startsWith('ch_torso_')) return 3.25;
+    if (partId === 'ch_arm_l_f' || partId === 'ch_arm_r_f' || partId === 'ch_arm_l_b' || partId === 'ch_arm_r_b') return 2.0;
+    if (partId === 'ch_forearm_l_f' || partId === 'ch_forearm_r_f' || partId === 'ch_forearm_l_b' || partId === 'ch_forearm_r_b') return 1.5;
+    if (partId === 'ch_hand_l_f' || partId === 'ch_hand_r_f' || partId === 'ch_hand_l_b' || partId === 'ch_hand_r_b') return 1.25;
+    if (partId === 'ch_groin') return 1.0;
+    if (partId === 'ch_buttock_l' || partId === 'ch_buttock_r') return 2.5;
+    if (partId === 'ch_thigh_l_f' || partId === 'ch_thigh_r_f' || partId === 'ch_thigh_l_b' || partId === 'ch_thigh_r_b') return t.thighHalf;
+    if (partId === 'ch_calf_l_f' || partId === 'ch_calf_r_f' || partId === 'ch_calf_l_b' || partId === 'ch_calf_r_b') return t.calfHalf;
+    if (partId === 'ch_foot_l_f' || partId === 'ch_foot_r_f' || partId === 'ch_foot_l_b' || partId === 'ch_foot_r_b') return t.footHalf;
+    return 0;
+  }
+
+  function goToMenu() {
+    document.getElementById('screen-menu').classList.remove('hidden');
+    document.getElementById('screen-body').classList.add('hidden');
+    document.getElementById('screen-standalone-parkland').classList.add('hidden');
+  }
+
+  function openModule(moduleKey) {
+    document.getElementById('screen-menu').classList.add('hidden');
+
+    if (moduleKey === 'parkland_only') {
+      document.getElementById('screen-body').classList.add('hidden');
+      document.getElementById('screen-standalone-parkland').classList.remove('hidden');
+      calculateSoloParkland();
+      return;
+    }
+
+    document.getElementById('screen-standalone-parkland').classList.add('hidden');
+    document.getElementById('screen-body').classList.remove('hidden');
+
+    currentMode = moduleKey;
+    const titleEl = document.getElementById('body-module-title');
+    const subEl = document.getElementById('body-module-subtitle');
+    const childBox = document.getElementById('child-age-box');
+    const adultContainer = document.getElementById('view-adult-container');
+    const childContainer = document.getElementById('view-child-container');
+    const weightInput = document.getElementById('weight-input');
+
+    if (moduleKey === 'adult') {
+      titleEl.innerText = "Dorosły";
+      subEl.innerText = "REGUŁA 9% • PRZÓD I TYŁ";
+      childBox.classList.add('hidden');
+      adultContainer.classList.remove('hidden');
+      childContainer.classList.add('hidden');
+
+      weightInput.min = 40;
+      weightInput.max = 140;
+      weightInput.value = 70;
+    } else {
+      titleEl.innerText = "Dziecko";
+      subEl.innerText = "TABELA LUND-BROWDER • PRZÓD I TYŁ";
+      childBox.classList.remove('hidden');
+      adultContainer.classList.add('hidden');
+      childContainer.classList.remove('hidden');
+
+      applyChildAgeWeight(childAge);
+      updateChildDisplay();
+    }
+
+    activeParts.clear();
+    renderSelection();
+    calculate();
+  }
+
+  function applyChildAgeWeight(ageKey) {
+    const conf = ageWeightConfig[ageKey];
+    const weightInput = document.getElementById('weight-input');
+    weightInput.min = conf.min;
+    weightInput.max = conf.max;
+    weightInput.value = conf.defaultWeight;
+  }
+
+  function setChildAge(ageKey) {
+    childAge = ageKey;
+    ['newborn', '1_4', '5_9', '9_14'].forEach(k => {
+      const btn = document.getElementById('btn-' + k);
+      if (btn) btn.classList.toggle('active', k === ageKey);
+    });
+
+    const labels = {
+      newborn: 'Noworodek (<1 r.ż.)',
+      '1_4': '1. – 4. r.ż.',
+      '5_9': '5. – 9. r.ż.',
+      '9_14': '9. – 14. r.ż.'
+    };
+    document.getElementById('child-age-name').innerText = labels[ageKey];
+
+    applyChildAgeWeight(ageKey);
+    updateChildDisplay();
+    calculate();
+  }
+
+  function updateChildDisplay() {
+    if (currentMode !== 'child') return;
+    const t = childTable[childAge];
+    
+    const headText = t.headHalf.toString().replace('.', ',') + '%';
+    const thighText = t.thighHalf.toString().replace('.', ',') + '%';
+    const calfText = t.calfHalf.toString().replace('.', ',') + '%';
+
+    const hf = document.getElementById('lbl-ch_head_f');
+    const hb = document.getElementById('lbl-ch_head_b');
+    if (hf) hf.textContent = headText;
+    if (hb) hb.textContent = headText;
+
+    const tfL = document.getElementById('lbl-ch_thigh_l_f');
+    const tfR = document.getElementById('lbl-ch_thigh_r_f');
+    const tbL = document.getElementById('lbl-ch_thigh_l_b');
+    const tbR = document.getElementById('lbl-ch_thigh_r_b');
+    if (tfL) tfL.textContent = thighText;
+    if (tfR) tfR.textContent = thighText;
+    if (tbL) tbL.textContent = thighText;
+    if (tbR) tbR.textContent = thighText;
+
+    const cfL = document.getElementById('lbl-ch_calf_l_f');
+    const cfR = document.getElementById('lbl-ch_calf_r_f');
+    const cbL = document.getElementById('lbl-ch_calf_l_b');
+    const cbR = document.getElementById('lbl-ch_calf_r_b');
+    if (cfL) cfL.textContent = calfText;
+    if (cfR) cfR.textContent = calfText;
+    if (cbL) cbL.textContent = calfText;
+    if (cbR) cbR.textContent = calfText;
+  }
+
+  function togglePart(partId) {
+    if (activeParts.has(partId)) {
+      activeParts.delete(partId);
+    } else {
+      activeParts.add(partId);
+    }
+    renderSelection();
+    calculate();
+  }
+
+  function resetSelection() {
+    activeParts.clear();
+    renderSelection();
+    calculate();
+  }
+
+  function renderSelection() {
+    document.querySelectorAll('.body-part').forEach(el => {
+      const id = el.id.replace('part-', '');
+      const isAct = activeParts.has(id);
+      el.classList.toggle('active', isAct);
+
+      const lbl = document.getElementById('lbl-' + id);
+      const title = document.getElementById('t-' + id);
+      if (lbl) lbl.classList.toggle('active-label', isAct);
+      if (title) title.classList.toggle('active-label', isAct);
+    });
+  }
+
+  function calculate() {
+    const weight = parseFloat(document.getElementById('weight-input').value);
+    document.getElementById('weight-text').innerText = weight + ' kg';
+
+    let tbsa = 0;
+    if (currentMode === 'adult') {
+      activeParts.forEach(id => {
+        if (adultPcts[id]) tbsa += adultPcts[id];
+      });
+    } else {
+      activeParts.forEach(id => {
+        tbsa += getChildPartWeight(id, childAge);
+      });
+    }
+
+    tbsa = Math.min(100, Math.round(tbsa * 10) / 10);
+    document.getElementById('tbsa-total').innerText = tbsa.toString().replace('.', ',');
+    document.getElementById('tbsa-desc-text').innerText = 
+      activeParts.size === 0 ? 'Dotknij części ciała, aby policzyć' : `${activeParts.size} zaznaczonych segmentów`;
+
+    const totalMl = Math.round(4 * weight * tbsa);
+    const halfMl = Math.round(totalMl / 2);
+    const rate8h = Math.round(halfMl / 8);
+    const rate16h = Math.round(halfMl / 16);
+
+    document.getElementById('val-24h').innerText = totalMl.toLocaleString('pl-PL') + ' ml';
+    document.getElementById('val-8h').innerText = halfMl.toLocaleString('pl-PL') + ' ml';
+    document.getElementById('rate-8h').innerText = rate8h.toLocaleString('pl-PL') + ' ml / godz.';
+    document.getElementById('val-16h').innerText = halfMl.toLocaleString('pl-PL') + ' ml';
+    document.getElementById('rate-16h').innerText = rate16h.toLocaleString('pl-PL') + ' ml / godz.';
+  }
+
+  function calculateSoloParkland() {
+    const tbsa = parseFloat(document.getElementById('solo-tbsa').value);
+    const weight = parseFloat(document.getElementById('solo-weight').value);
+
+    document.getElementById('solo-tbsa-text').innerText = tbsa + '%';
+    document.getElementById('solo-weight-text').innerText = weight + ' kg';
+
+    const totalMl = Math.round(4 * weight * tbsa);
+    const halfMl = Math.round(totalMl / 2);
+    const rate8h = Math.round(halfMl / 8);
+    const rate16h = Math.round(halfMl / 16);
+
+    document.getElementById('solo-val-24h').innerText = totalMl.toLocaleString('pl-PL') + ' ml';
+    document.getElementById('solo-val-8h').innerText = halfMl.toLocaleString('pl-PL') + ' ml';
+    document.getElementById('solo-rate-8h').innerText = rate8h.toLocaleString('pl-PL') + ' ml / godz.';
+    document.getElementById('solo-val-16h').innerText = halfMl.toLocaleString('pl-PL') + ' ml';
+    document.getElementById('solo-rate-16h').innerText = rate16h.toLocaleString('pl-PL') + ' ml / godz.';
+  }
+</script>
+
+</body>
+</html>
