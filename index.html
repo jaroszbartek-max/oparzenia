@@ -1286,7 +1286,9 @@
     document.getElementById('solo-val-16h').innerText = halfMl.toLocaleString('pl-PL') + ' ml';
     document.getElementById('solo-rate-16h').innerText = rate16h.toLocaleString('pl-PL') + ' ml / godz.';
   }
-</script>
+<script>
+  // ... cała logika kalkulatora ...
+
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
@@ -1296,4 +1298,3 @@
   }
 </script>
 </body>
-</html>
