@@ -569,29 +569,34 @@
       </div>
     </div>
 
-    <!-- 3 Kafelki Wyboru z nowymi ikonami -->
+    <!-- 3 Kafelki Wyboru -->
     <div class="menu-grid">
-      <!-- Ikona Dorosłego (Sylwetka) -->
+      <!-- Ikona Dorosłego (Nowy, profesjonalny projekt) -->
       <div class="menu-card" onclick="openModule('adult')">
         <div class="menu-badge-icon badge-adult">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="5" r="3"/>
-            <path d="M5 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/>
+            <circle cx="12" cy="3.5" r="2"/>
+            <path d="M8 10h8l-1 6h-6z"/>
+            <path d="M8 10l-2.5 4.5"/>
+            <path d="M16 10l2.5 4.5"/>
+            <path d="M10 16l-1.5 6"/>
+            <path d="M14 16l1.5 6"/>
           </svg>
         </div>
         <div class="menu-info">
           <h2>Dorosły</h2>
-          <p>Reguła 9% Wallace'a • Przód i tył obok siebie</p>
+          <p>Reguła 9% Wallace'a</p>
         </div>
       </div>
 
-      <!-- Ikona Dziecka (Stylizowany bobas / pieluszka) -->
+      <!-- Ikona Dziecka -->
       <div class="menu-card" onclick="openModule('child')">
         <div class="menu-badge-icon badge-child">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="7" r="3"/>
-            <path d="M8 14c0 2 2 4 4 4s4-2 4-4v-2H8v2z"/>
-            <path d="M12 11v3"/>
+            <circle cx="12" cy="6" r="2.5"/>
+            <path d="M9 11h6v6a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-6z"/>
+            <path d="M10 19l-2 3m6-3l2 3"/>
+            <path d="M9 13l-3 2m9-2l3 2"/>
           </svg>
         </div>
         <div class="menu-info">
@@ -657,14 +662,14 @@
       </div>
     </div>
 
-    <!-- Karta sylwetek - zoptymalizowana pod maksymalną szerokość ekranu -->
+    <!-- Karta sylwetek -->
     <div class="silhouette-card">
       <div class="sil-header">
         <span>Dotknij segmentu, aby zaznaczyć:</span>
         <span class="reset-btn" onclick="resetSelection()">Wyczyść</span>
       </div>
 
-      <!-- SYLWETKA DOROSŁEGO (szeroki widok) -->
+      <!-- SYLWETKA DOROSŁEGO -->
       <div id="view-adult-container" class="svg-container">
         <svg viewBox="0 0 640 540">
           <g id="ad-front" transform="translate(10, 0)">
@@ -771,7 +776,7 @@
         </svg>
       </div>
 
-      <!-- SYLWETKA DZIECKA (szeroki widok) -->
+      <!-- SYLWETKA DZIECKA -->
       <div id="view-child-container" class="svg-container hidden">
         <svg viewBox="0 0 640 540">
           <g id="ch-front" transform="translate(10, 0)">
@@ -1026,7 +1031,7 @@
     </div>
   </div>
 
-  <!-- Dyskretny podpis na samym dole pod wszystkim -->
+  <!-- Podpis na samym dole -->
   <div class="app-footer">
     created by B. Jarosz v5
   </div>
