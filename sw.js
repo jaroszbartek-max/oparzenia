@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oparzenia-cache-v2';
+const CACHE_NAME = 'oparzenia-cache-v3';
 const ASSETS = [
   './',
   './index.html',
