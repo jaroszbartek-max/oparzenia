@@ -180,13 +180,16 @@
       font-weight: 500;
     }
 
-    /* Grupy wiekowe dziecka */
+    /* Grupy wiekowe i waga dziecka pod wiekiem */
     .child-age-box {
       background: var(--card-bg);
       border-radius: 12px;
       padding: 10px 12px;
       border: 1px solid var(--card-border);
       box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .age-row {
@@ -194,7 +197,7 @@
       justify-content: space-between;
       font-size: 0.8rem;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 2px;
     }
 
     .age-grid {
@@ -349,7 +352,7 @@
       margin-left: 2px;
     }
 
-    /* Rozwijane sekcje (<details>) */
+    /* Sekcja Parklanda i leków (Rozwijane sekcje) */
     details.parkland-section {
       background: #ffffff;
       border: 1.5px solid #bfdbfe;
@@ -614,7 +617,7 @@
       <div style="width: 70px;"></div>
     </div>
 
-    <!-- Grupa wiekowa u dziecka -->
+    <!-- Grupa wiekowa u dziecka wraz z suwakiem wagi bezpośrednio pod spodem -->
     <div id="child-age-box" class="child-age-box hidden">
       <div class="age-row">
         <span>Wiek dziecka:</span>
@@ -625,6 +628,14 @@
         <button class="age-btn active" id="btn-1_4" onclick="setChildAge('1_4')">1–4 r.ż.</button>
         <button class="age-btn" id="btn-5_9" onclick="setChildAge('5_9')">5–9 r.ż.</button>
         <button class="age-btn" id="btn-9_14" onclick="setChildAge('9_14')">9–14 r.ż.</button>
+      </div>
+      <!-- Suwak wagi dziecka umieszczony tuż pod wiekiem -->
+      <div class="input-box" style="margin-top: 4px;">
+        <div class="input-row">
+          <span>Masa ciała pacjenta:</span>
+          <span class="input-val" id="weight-text-child">14 kg</span>
+        </div>
+        <input type="range" id="weight-input-child" min="2" max="65" step="1" value="14" oninput="syncWeight('child')">
       </div>
     </div>
 
@@ -868,7 +879,7 @@
             <text class="part-title" id="t-ch_arm_r_b" x="260" y="182">RAMIĘ</text>
             <text class="part-label" id="lbl-ch_arm_r_b" x="260" y="197">2%</text>
 
-            <path id="part-ch_forearm_r_b" class="body-part" d="M 292 220 L 251 220 L 265 278 L 306 278 Z" onclick="togglePart('ch_forearm_r_b')" />
+            <path id="part-ch_forearm_r_b" class="body-part" d="M 292 220 L 251 220 L 265 278 L 306 278 Z" onclick="togglePart('part-ch_forearm_r_b')" />
             <text class="part-title" id="t-ch_forearm_r_b" x="278" y="244">PRZEDR.</text>
             <text class="part-label" id="lbl-ch_forearm_r_b" x="278" y="259">1,5%</text>
 
@@ -892,7 +903,7 @@
             <text class="part-title" id="t-ch_calf_l_b" x="122" y="414">PODUDZIE</text>
             <text class="part-label" id="lbl-ch_calf_l_b" x="122" y="431">2,5%</text>
 
-            <path id="part-ch_foot_l_b" class="body-part" d="M 92 472 L 145 472 L 139 532 L 82 532 Z" onclick="togglePart('ch_foot_l_b')" />
+            <path id="part-ch_foot_l_b" class="body-part" d="M 92 472 L 145 472 L 139 532 L 82 532 Z" onclick="togglePart('part-ch_foot_l_b')" />
             <text class="part-title" id="t-ch_foot_l_b" x="114" y="496">PIĘTA</text>
             <text class="part-label" id="lbl-ch_foot_l_b" x="114" y="512" font-size="8.5">1,75%</text>
 
@@ -923,21 +934,16 @@
       </div>
     </div>
 
-    <!-- Płynoterapia powiązana z sylwetką + Leczenie przeciwbólowe w rozwijanych sekcjach -->
-    <details class="parkland-section" open>
+    <!-- Ukryty input dla logiki obliczeń w tle -->
+    <input type="range" id="weight-input" min="2" max="140" step="1" value="70" class="hidden" oninput="calculate()">
+
+    <!-- Rozwijana sekcja 1: Płynoterapia Parklanda (dla obu modułów) -->
+    <details class="parkland-section">
       <summary>💧 Płynoterapia Parklanda</summary>
-      <div class="parkland-content">
-        <div class="parkland-header" style="margin-top: 4px;">
+      <div class="parkland-content" style="margin-top: 6px;">
+        <div class="parkland-header">
           <span style="font-size: 0.78rem; color: #64748b; font-weight: 700;">Wzór płynoterapii:</span>
           <div class="parkland-formula">4 ml × kg × % oparzenia</div>
-        </div>
-
-        <div class="input-box">
-          <div class="input-row">
-            <span>Masa ciała pacjenta:</span>
-            <span class="input-val" id="weight-text">70 kg</span>
-          </div>
-          <input type="range" id="weight-input" min="40" max="140" step="1" value="70" oninput="calculate()">
         </div>
 
         <div class="total-24h-box">
@@ -960,37 +966,37 @@
       </div>
     </details>
 
-    <!-- Rozwijana sekcja 2: Leczenie przeciwbólowe -->
-    <details class="parkland-section">
+    <!-- Rozwijana sekcja 2: Leczenie przeciwbólowe (tylko dla dziecka) -->
+    <details class="parkland-section" id="pain-section">
       <summary>💊 Leczenie przeciwbólowe (dawki wagowe)</summary>
       <div class="parkland-content" style="margin-top: 6px;">
         <table class="meds-table">
           <thead>
             <tr>
               <th>Lek</th>
-              <th>Dawka obliczona (dla <span id="pain-weight-label">70</span> kg)</th>
+              <th>Dawka obliczona (dla <span id="pain-weight-label">14</span> kg)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Paracetamol</strong><br><small>15 mg/kg i.v.</small></td>
-              <td id="med-paracetamol">1000 mg</td>
+              <td><strong>Paracetamol</strong><br><small>15 mg/kg</small></td>
+              <td id="med-paracetamol">210 mg</td>
             </tr>
             <tr>
-              <td><strong>Metamizol</strong> (Pyralgin)<br><small>8–16 mg/kg i.v.</small></td>
-              <td id="med-metamizol">560 – 1120 mg</td>
+              <td><strong>Metamizol</strong> (Pyralgin)<br><small>8–16 mg/kg</small></td>
+              <td id="med-metamizol">112 – 224 mg</td>
             </tr>
             <tr>
               <td><strong>Morfina</strong><br><small>0,1 mg/kg i.v.</small></td>
-              <td id="med-morfina">7 mg i.v.</td>
+              <td id="med-morfina">1,4 mg i.v.</td>
             </tr>
             <tr>
               <td><strong>Fentanyl (i.v.)</strong><br><small>1–3 mcg/kg i.v.</small></td>
-              <td id="med-fentanyl-iv">70 – 210 mcg i.v.</td>
+              <td id="med-fentanyl-iv">14 – 42 mcg i.v.</td>
             </tr>
             <tr>
               <td><strong>Fentanyl (donosowo)</strong><br><small>2 mcg/kg</small></td>
-              <td id="med-fentanyl-nasal">140 mcg (2,8 ml do nosa)</td>
+              <td id="med-fentanyl-nasal">28 mcg (0,6 ml do nosa)</td>
             </tr>
           </tbody>
         </table>
@@ -1049,7 +1055,7 @@
 
   <!-- Dyskretny podpis na samym dole pod wszystkim -->
   <div class="app-footer">
-    created by B. Jarosz wer. 1.2
+    created by B. Jarosz wer. 1.3
   </div>
 
 </div>
@@ -1058,6 +1064,7 @@
   let currentMode = 'adult';
   let childAge = '1_4';
   let activeParts = new Set();
+  let currentWeight = 70;
 
   const ageWeightConfig = {
     newborn: { defaultWeight: 4,  min: 2,  max: 10 },
@@ -1127,7 +1134,7 @@
     const childBox = document.getElementById('child-age-box');
     const adultContainer = document.getElementById('view-adult-container');
     const childContainer = document.getElementById('view-child-container');
-    const weightInput = document.getElementById('weight-input');
+    const painSection = document.getElementById('pain-section');
 
     if (moduleKey === 'adult') {
       titleEl.innerText = "Dorosły";
@@ -1135,16 +1142,16 @@
       childBox.classList.add('hidden');
       adultContainer.classList.remove('hidden');
       childContainer.classList.add('hidden');
+      if (painSection) painSection.classList.add('hidden'); // Usuwamy sekcję leków u dorosłego
 
-      weightInput.min = 40;
-      weightInput.max = 140;
-      weightInput.value = 70;
+      currentWeight = 70;
     } else {
       titleEl.innerText = "Dziecko";
       subEl.innerText = "TABELA LUND-BROWDER • PRZÓD I TYŁ";
       childBox.classList.remove('hidden');
       adultContainer.classList.add('hidden');
       childContainer.classList.remove('hidden');
+      if (painSection) painSection.classList.remove('hidden'); // Pokazujemy sekcję leków u dziecka
 
       applyChildAgeWeight(childAge);
       updateChildDisplay();
@@ -1157,10 +1164,14 @@
 
   function applyChildAgeWeight(ageKey) {
     const conf = ageWeightConfig[ageKey];
-    const weightInput = document.getElementById('weight-input');
-    weightInput.min = conf.min;
-    weightInput.max = conf.max;
-    weightInput.value = conf.defaultWeight;
+    currentWeight = conf.defaultWeight;
+    const weightInputChild = document.getElementById('weight-input-child');
+    if (weightInputChild) {
+      weightInputChild.min = conf.min;
+      weightInputChild.max = conf.max;
+      weightInputChild.value = conf.defaultWeight;
+      document.getElementById('weight-text-child').innerText = conf.defaultWeight + ' kg';
+    }
   }
 
   function setChildAge(ageKey) {
@@ -1180,6 +1191,14 @@
 
     applyChildAgeWeight(ageKey);
     updateChildDisplay();
+    calculate();
+  }
+
+  function syncWeight(source) {
+    if (source === 'child') {
+      currentWeight = parseFloat(document.getElementById('weight-input-child').value);
+      document.getElementById('weight-text-child').innerText = currentWeight + ' kg';
+    }
     calculate();
   }
 
@@ -1245,8 +1264,12 @@
   }
 
   function calculate() {
-    const weight = parseFloat(document.getElementById('weight-input').value);
-    document.getElementById('weight-text').innerText = weight + ' kg';
+    let weight = currentMode === 'adult' ? 70 : currentWeight;
+    if (currentMode === 'adult') {
+      // Dla dorosłego stała waga z ukrytego inputu lub domyślna
+      weight = 70; 
+    }
+    
     document.getElementById('pain-weight-label').innerText = weight;
 
     let tbsa = 0;
@@ -1277,18 +1300,13 @@
     document.getElementById('val-16h').innerText = halfMl.toLocaleString('pl-PL') + ' ml';
     document.getElementById('rate-16h').innerText = rate16h.toLocaleString('pl-PL') + ' ml / godz.';
 
-    // Obliczanie leków przeciwbólowych wg wagi
-    // Paracetamol: 15 mg/kg (max 1000 mg)
+    // Obliczanie leków przeciwbólowych wg wagi dziecka
     let paracetamol = Math.min(1000, Math.round(weight * 15));
-    // Metamizol: 8-16 mg/kg
     let metaMin = Math.round(weight * 8);
     let metaMax = Math.round(weight * 16);
-    // Morfina: 0.1 mg/kg i.v.
     let morfina = Math.round(weight * 0.1 * 10) / 10;
-    // Fentanyl i.v.: 1-3 mcg/kg
     let fentMin = Math.round(weight * 1);
     let fentMax = Math.round(weight * 3);
-    // Fentanyl donosowo: 2 mcg/kg (z uwzględnieniem stężenia 100 mcg/2ml = 50 mcg/ml -> objętość ml)
     let fentNas = Math.round(weight * 2);
     let fentNasMl = Math.round((fentNas / 50) * 10) / 10;
 
