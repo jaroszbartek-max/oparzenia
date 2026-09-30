@@ -58,11 +58,11 @@
 
     .back-btn {
       background: #ffffff;
-      border: 1.5px solid #cbd5e1;
+      border: 1px solid #cbd5e1;
       padding: 8px 14px;
       border-radius: 10px;
       font-size: 0.85rem;
-      font-weight: 800;
+      font-weight: 500;
       color: #0f172a;
       cursor: pointer;
       display: flex;
@@ -77,8 +77,8 @@
     }
 
     h1 {
-      font-size: 1.25rem;
-      font-weight: 900;
+      font-size: 1.15rem;
+      font-weight: 700;
       color: #b91c1c;
       letter-spacing: -0.3px;
     }
@@ -86,8 +86,8 @@
     .subtitle {
       font-size: 0.72rem;
       color: var(--text-muted);
-      font-weight: 700;
-      letter-spacing: 0.8px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
     }
 
     /* EKRAN STARTOWY */
@@ -106,20 +106,21 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.25);
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
     }
 
     .hero-left h1 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: #ffffff;
       text-align: left;
+      font-weight: 700;
     }
 
     .hero-left p {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #fee2e2;
       margin-top: 3px;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .hero-svg {
@@ -136,14 +137,14 @@
 
     .menu-card {
       background: #ffffff;
-      border: 2px solid #e2e8f0;
+      border: 1px solid #e2e8f0;
       border-radius: 16px;
       padding: 18px 16px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
       transition: all 0.15s ease;
     }
 
@@ -168,16 +169,16 @@
     .badge-parkland { background: #e0f2fe; border: 1px solid #bae6fd; }
 
     .menu-info h2 {
-      font-size: 1.12rem;
-      font-weight: 900;
+      font-size: 1.05rem;
+      font-weight: 600;
       color: #0f172a;
     }
 
     .menu-info p {
       font-size: 0.78rem;
       color: var(--text-muted);
-      margin-top: 3px;
-      font-weight: 500;
+      margin-top: 2px;
+      font-weight: 400;
     }
 
     /* Grupy wiekowe i waga dziecka pod wiekiem */
@@ -186,7 +187,7 @@
       border-radius: 12px;
       padding: 10px 12px;
       border: 1px solid var(--card-border);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -196,8 +197,14 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.8rem;
-      font-weight: 800;
+      font-weight: 400;
+      color: var(--text-muted);
       margin-bottom: 2px;
+    }
+
+    .age-row span:last-child {
+      color: #ea580c;
+      font-weight: 600;
     }
 
     .age-grid {
@@ -209,10 +216,10 @@
     .age-btn {
       padding: 9px 2px;
       background: #f8fafc;
-      border: 1.5px solid var(--card-border);
+      border: 1px solid var(--card-border);
       border-radius: 8px;
       font-size: 0.76rem;
-      font-weight: 800;
+      font-weight: 400;
       color: #334155;
       cursor: pointer;
       text-align: center;
@@ -222,7 +229,7 @@
       background: #ea580c;
       border-color: #ea580c;
       color: #ffffff;
-      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+      font-weight: 500;
     }
 
     /* Karta sylwetki */
@@ -235,7 +242,7 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
 
     .sil-header {
@@ -245,14 +252,14 @@
       align-items: center;
       padding: 0 8px 10px;
       font-size: 0.82rem;
-      font-weight: 800;
+      font-weight: 400;
       color: #475569;
     }
 
     .reset-btn {
       color: #dc2626;
       font-size: 0.8rem;
-      font-weight: 800;
+      font-weight: 500;
       cursor: pointer;
       text-decoration: underline;
     }
@@ -292,7 +299,7 @@
 
     .part-title {
       font-size: 8px;
-      font-weight: 800;
+      font-weight: 500;
       fill: #475569;
       pointer-events: none;
       text-anchor: middle;
@@ -302,7 +309,7 @@
 
     .part-label {
       font-size: 10.5px;
-      font-weight: 900;
+      font-weight: 600;
       fill: #0f172a;
       pointer-events: none;
       text-anchor: middle;
@@ -323,12 +330,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
     }
 
     .tbsa-title {
       font-size: 0.78rem;
-      font-weight: 800;
+      font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       opacity: 0.9;
@@ -337,34 +344,35 @@
     .tbsa-desc {
       font-size: 0.76rem;
       margin-top: 2px;
-      opacity: 0.95;
+      opacity: 0.9;
+      font-weight: 300;
     }
 
     .tbsa-val {
-      font-size: 2.8rem;
-      font-weight: 900;
+      font-size: 2.6rem;
+      font-weight: 700;
       line-height: 1;
     }
 
     .tbsa-unit {
-      font-size: 1.2rem;
-      font-weight: 800;
+      font-size: 1.1rem;
+      font-weight: 600;
       margin-left: 2px;
     }
 
-    /* Sekcja Parklanda i leków (Rozwijane sekcje) */
+    /* Rozwijane sekcje */
     details.parkland-section {
       background: #ffffff;
-      border: 1.5px solid #bfdbfe;
+      border: 1px solid #bfdbfe;
       border-radius: 14px;
       padding: 14px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
       transition: all 0.2s ease;
     }
 
     details.parkland-section summary {
-      font-size: 0.92rem;
-      font-weight: 800;
+      font-size: 0.9rem;
+      font-weight: 600;
       color: #1e3a8a;
       cursor: pointer;
       display: flex;
@@ -394,7 +402,7 @@
     .parkland-formula {
       font-size: 0.74rem;
       color: #1d4ed8;
-      font-weight: 800;
+      font-weight: 500;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
       padding: 4px 8px;
@@ -406,7 +414,7 @@
       border-radius: 12px;
       padding: 12px 14px;
       border: 1px solid var(--card-border);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
 
     .input-row {
@@ -414,14 +422,14 @@
       justify-content: space-between;
       align-items: baseline;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 400;
       color: var(--text-muted);
       margin-bottom: 6px;
     }
 
     .input-val {
-      font-size: 1.15rem;
-      font-weight: 900;
+      font-size: 1.1rem;
+      font-weight: 600;
       color: #0284c7;
     }
 
@@ -437,12 +445,12 @@
 
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: #0284c7;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     }
 
     .parkland-grid {
@@ -461,21 +469,21 @@
 
     .card-label {
       font-size: 0.68rem;
-      font-weight: 800;
+      font-weight: 500;
       color: var(--text-muted);
       text-transform: uppercase;
     }
 
     .card-val {
-      font-size: 1.35rem;
-      font-weight: 900;
+      font-size: 1.25rem;
+      font-weight: 700;
       color: #0369a1;
       margin: 3px 0 1px;
     }
 
     .card-rate {
-      font-size: 0.8rem;
-      font-weight: 800;
+      font-size: 0.78rem;
+      font-weight: 500;
       color: #0284c7;
     }
 
@@ -491,13 +499,13 @@
 
     .total-label {
       font-size: 0.8rem;
-      font-weight: 800;
+      font-weight: 500;
       color: #1e3a8a;
     }
 
     .total-val {
-      font-size: 1.25rem;
-      font-weight: 900;
+      font-size: 1.2rem;
+      font-weight: 700;
       color: #0284c7;
     }
 
@@ -517,13 +525,17 @@
     .meds-table th {
       background: #eff6ff;
       color: #1e3a8a;
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .meds-table td {
       background: #f8fafc;
       color: #0f172a;
-      font-weight: 700;
+      font-weight: 400;
+    }
+
+    .meds-table td strong {
+      font-weight: 600;
     }
 
     /* Stopka aplikacji */
@@ -531,7 +543,7 @@
       text-align: center;
       font-size: 0.72rem;
       color: var(--text-muted);
-      font-weight: 700;
+      font-weight: 400;
       padding: 12px 0 4px;
       letter-spacing: 0.5px;
       border-top: 1px solid #e2e8f0;
@@ -628,7 +640,7 @@
     <div id="child-age-box" class="child-age-box hidden">
       <div class="age-row">
         <span>Wiek dziecka:</span>
-        <span id="child-age-name" style="color:#ea580c; font-weight:800;">1. – 4. r.ż.</span>
+        <span id="child-age-name" style="color:#ea580c; font-weight:600;">1. – 4. r.ż.</span>
       </div>
       <div class="age-grid">
         <button class="age-btn" id="btn-newborn" onclick="setChildAge('newborn')">Noworodek</button>
@@ -636,7 +648,7 @@
         <button class="age-btn" id="btn-5_9" onclick="setChildAge('5_9')">5–9 r.ż.</button>
         <button class="age-btn" id="btn-9_14" onclick="setChildAge('9_14')">9–14 r.ż.</button>
       </div>
-      <hr style="border:0; border-top: 1px solid var(--card-border); margin: 6px 0;">
+      <hr style="border:0; border-top: 1px solid var(--card-border); margin: 4px 0;">
       <div class="input-box" style="margin: 0; background: transparent; border: none; padding: 0; box-shadow: none;">
         <div class="input-row">
           <span>Masa ciała pacjenta:</span>
@@ -656,71 +668,53 @@
       <!-- SYLWETKA DOROSŁEGO -->
       <div id="view-adult-container" class="svg-container">
         <svg viewBox="0 0 680 600">
-          <!-- DOROSŁY PRZÓD -->
           <g id="ad-front" transform="translate(0, 0)">
-            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">PRZÓD</text>
-
+            <text x="165" y="24" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">PRZÓD</text>
             <path id="part-ad_head_f" class="body-part" d="M 130 56 C 130 42 200 42 200 56 C 208 86 202 116 165 116 C 128 116 122 86 130 56 Z" onclick="togglePart('ad_head_f')" />
             <text class="part-title" id="t-ad_head_f" x="165" y="78">GŁOWA</text>
             <text class="part-label" id="lbl-ad_head_f" x="165" y="96">4,5%</text>
-
             <rect id="part-ad_neck_f" class="body-part" x="151" y="116" width="28" height="14" rx="2" onclick="togglePart('ad_neck_f')" />
-
             <path id="part-ad_torso_lu_f" class="body-part" d="M 106 132 L 162 132 L 162 204 L 111 204 Z" onclick="togglePart('ad_torso_lu_f')" />
             <text class="part-title" id="t-ad_torso_lu_f" x="134" y="160">KLATKA</text>
             <text class="part-label" id="lbl-ad_torso_lu_f" x="134" y="178">4,5%</text>
-
             <path id="part-ad_torso_ru_f" class="body-part" d="M 168 132 L 224 132 L 219 204 L 168 204 Z" onclick="togglePart('ad_torso_ru_f')" />
             <text class="part-title" id="t-ad_torso_ru_f" x="196" y="160">KLATKA</text>
             <text class="part-label" id="lbl-ad_torso_ru_f" x="196" y="178">4,5%</text>
-
             <path id="part-ad_torso_ll_f" class="body-part" d="M 111 208 L 162 208 L 162 274 L 116 274 Z" onclick="togglePart('ad_torso_ll_f')" />
             <text class="part-title" id="t-ad_torso_ll_f" x="136" y="233">BRZUCH</text>
             <text class="part-label" id="lbl-ad_torso_ll_f" x="136" y="251">4,5%</text>
-
             <path id="part-ad_torso_rl_f" class="body-part" d="M 168 208 L 219 208 L 214 274 L 168 274 Z" onclick="togglePart('ad_torso_rl_f')" />
             <text class="part-title" id="t-ad_torso_rl_f" x="194" y="233">BRZUCH</text>
             <text class="part-label" id="lbl-ad_torso_rl_f" x="194" y="251">4,5%</text>
-
             <path id="part-ad_arm_l_f" class="body-part" d="M 104 134 L 64 154 L 48 212 L 86 212 L 104 182 Z" onclick="togglePart('ad_arm_l_f')" />
             <text class="part-title" id="t-ad_arm_l_f" x="74" y="172">RAMIĘ</text>
             <text class="part-label" id="lbl-ad_arm_l_f" x="74" y="188">2%</text>
-
             <path id="part-ad_forearm_l_f" class="body-part" d="M 47 216 L 85 216 L 72 284 L 34 284 Z" onclick="togglePart('ad_forearm_l_f')" />
             <text class="part-title" id="t-ad_forearm_l_f" x="58" y="242">PRZEDR.</text>
             <text class="part-label" id="lbl-ad_forearm_l_f" x="58" y="258">1,5%</text>
-
             <path id="part-ad_hand_l_f" class="body-part" d="M 33 288 L 70 288 L 59 340 L 20 340 Z" onclick="togglePart('ad_hand_l_f')" />
             <text class="part-title" id="t-ad_hand_l_f" x="44" y="308">DŁOŃ</text>
             <text class="part-label" id="lbl-ad_hand_l_f" x="44" y="323">1%</text>
-
             <path id="part-ad_arm_r_f" class="body-part" d="M 226 134 L 266 154 L 282 212 L 244 212 L 226 182 Z" onclick="togglePart('ad_arm_r_f')" />
             <text class="part-title" id="t-ad_arm_r_f" x="256" y="172">RAMIĘ</text>
             <text class="part-label" id="lbl-ad_arm_r_f" x="256" y="188">2%</text>
-
             <path id="part-ad_forearm_r_f" class="body-part" d="M 283 216 L 245 216 L 258 284 L 296 284 Z" onclick="togglePart('ad_forearm_r_f')" />
             <text class="part-title" id="t-ad_forearm_r_f" x="272" y="242">PRZEDR.</text>
             <text class="part-label" id="lbl-ad_forearm_r_f" x="272" y="258">1,5%</text>
-
             <path id="part-ad_hand_r_f" class="body-part" d="M 297 288 L 260 288 L 271 340 L 310 340 Z" onclick="togglePart('ad_hand_r_f')" />
             <text class="part-title" id="t-ad_hand_r_f" x="286" y="308">DŁOŃ</text>
             <text class="part-label" id="lbl-ad_hand_r_f" x="286" y="323">1%</text>
-
             <polygon id="part-ad_groin" class="body-part" points="149,275 181,275 165,302" onclick="togglePart('ad_groin')" />
             <text class="part-label" id="lbl-ad_groin" x="165" y="287" font-size="8.5">1%</text>
-
             <path id="part-ad_thigh_l_f" class="body-part" d="M 116 275 L 146 275 L 156 302 L 153 408 L 104 408 L 109 315 Z" onclick="togglePart('ad_thigh_l_f')" />
             <text class="part-title" id="t-ad_thigh_l_f" x="130" y="344">UDO</text>
             <text class="part-label" id="lbl-ad_thigh_l_f" x="130" y="364">4,5%</text>
-
             <path id="part-ad_calf_l_f" class="body-part" d="M 104 412 L 153 412 L 148 528 L 136 575 L 100 575 L 98 528 Z" onclick="togglePart('ad_calf_l_f')" />
             <text class="part-title" id="t-ad_calf_l_f" x="124" y="478">POD.+STOPA</text>
             <text class="part-label" id="lbl-ad_calf_l_f" x="124" y="498">4,5%</text>
-
             <path id="part-ad_thigh_r_f" class="body-part" d="M 214 275 L 184 275 L 174 302 L 177 408 L 226 408 L 221 315 Z" onclick="togglePart('ad_thigh_r_f')" />
             <text class="part-title" id="t-ad_thigh_r_f" x="200" y="344">UDO</text>
             <text class="part-label" id="lbl-ad_thigh_r_f" x="200" y="364">4,5%</text>
-
             <path id="part-ad_calf_r_f" class="body-part" d="M 226 412 L 177 412 L 182 528 L 194 575 L 230 575 L 232 528 Z" onclick="togglePart('ad_calf_r_f')" />
             <text class="part-title" id="t-ad_calf_r_f" x="206" y="478">POD.+STOPA</text>
             <text class="part-label" id="lbl-ad_calf_r_f" x="206" y="498">4,5%</text>
@@ -728,66 +722,50 @@
 
           <!-- DOROSŁY TYŁ -->
           <g id="ad-back" transform="translate(350, 0)">
-            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">TYŁ</text>
-
+            <text x="165" y="24" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">TYŁ</text>
             <path id="part-ad_head_b" class="body-part" d="M 130 56 C 130 42 200 42 200 56 C 208 86 202 116 165 116 C 128 116 122 86 130 56 Z" onclick="togglePart('ad_head_b')" />
             <text class="part-title" id="t-ad_head_b" x="165" y="78">GŁOWA</text>
             <text class="part-label" id="lbl-ad_head_b" x="165" y="96">4,5%</text>
-
             <rect id="part-ad_neck_b" class="body-part" x="151" y="116" width="28" height="14" rx="2" onclick="togglePart('ad_neck_b')" />
-
             <path id="part-ad_torso_lu_b" class="body-part" d="M 106 132 L 162 132 L 162 204 L 111 204 Z" onclick="togglePart('ad_torso_lu_b')" />
             <text class="part-title" id="t-ad_torso_lu_b" x="134" y="160">GÓRA</text>
             <text class="part-label" id="lbl-ad_torso_lu_b" x="134" y="178">4,5%</text>
-
             <path id="part-ad_torso_ru_b" class="body-part" d="M 168 132 L 224 132 L 219 204 L 168 204 Z" onclick="togglePart('ad_torso_ru_b')" />
             <text class="part-title" id="t-ad_torso_ru_b" x="196" y="160">GÓRA</text>
             <text class="part-label" id="lbl-ad_torso_ru_b" x="196" y="178">4,5%</text>
-
             <path id="part-ad_torso_ll_b" class="body-part" d="M 111 208 L 162 208 L 162 274 L 116 274 Z" onclick="togglePart('ad_torso_ll_b')" />
             <text class="part-title" id="t-ad_torso_ll_b" x="136" y="233">DÓŁ</text>
             <text class="part-label" id="lbl-ad_torso_ll_b" x="136" y="251">4,5%</text>
-
             <path id="part-ad_torso_rl_b" class="body-part" d="M 168 208 L 219 208 L 214 274 L 168 274 Z" onclick="togglePart('ad_torso_rl_b')" />
             <text class="part-title" id="t-ad_torso_rl_b" x="194" y="233">DÓŁ</text>
             <text class="part-label" id="lbl-ad_torso_rl_b" x="194" y="251">4,5%</text>
-
             <path id="part-ad_arm_l_b" class="body-part" d="M 104 134 L 64 154 L 48 212 L 86 212 L 104 182 Z" onclick="togglePart('ad_arm_l_b')" />
             <text class="part-title" id="t-ad_arm_l_b" x="74" y="172">RAMIĘ</text>
             <text class="part-label" id="lbl-ad_arm_l_b" x="74" y="188">2%</text>
-
             <path id="part-ad_forearm_l_b" class="body-part" d="M 49 216 L 85 216 L 72 284 L 34 284 Z" onclick="togglePart('ad_forearm_l_b')" />
             <text class="part-title" id="t-ad_forearm_l_b" x="58" y="242">PRZEDR.</text>
             <text class="part-label" id="lbl-ad_forearm_l_b" x="58" y="258">1,5%</text>
-
             <path id="part-ad_hand_l_b" class="body-part" d="M 33 288 L 70 288 L 59 340 L 20 340 Z" onclick="togglePart('ad_hand_l_b')" />
             <text class="part-title" id="t-ad_hand_l_b" x="44" y="308">DŁOŃ</text>
             <text class="part-label" id="lbl-ad_hand_l_b" x="44" y="323">1%</text>
-
             <path id="part-ad_arm_r_b" class="body-part" d="M 226 134 L 266 154 L 282 212 L 244 212 L 226 182 Z" onclick="togglePart('ad_arm_r_b')" />
             <text class="part-title" id="t-ad_arm_r_b" x="256" y="172">RAMIĘ</text>
             <text class="part-label" id="lbl-ad_arm_r_b" x="256" y="188">2%</text>
-
             <path id="part-ad_forearm_r_b" class="body-part" d="M 281 216 L 245 216 L 258 284 L 296 284 Z" onclick="togglePart('ad_forearm_r_b')" />
             <text class="part-title" id="t-ad_forearm_r_b" x="272" y="242">PRZEDR.</text>
             <text class="part-label" id="lbl-ad_forearm_r_b" x="272" y="258">1,5%</text>
-
             <path id="part-ad_hand_r_b" class="body-part" d="M 297 288 L 260 288 L 271 340 L 310 340 Z" onclick="togglePart('ad_hand_r_b')" />
             <text class="part-title" id="t-ad_hand_r_b" x="286" y="308">DŁOŃ</text>
             <text class="part-label" id="lbl-ad_hand_r_b" x="286" y="323">1%</text>
-
             <path id="part-ad_thigh_l_b" class="body-part" d="M 116 275 L 160 275 L 153 408 L 104 408 L 109 315 Z" onclick="togglePart('ad_thigh_l_b')" />
             <text class="part-title" id="t-ad_thigh_l_b" x="131" y="344">UDO</text>
             <text class="part-label" id="lbl-ad_thigh_l_b" x="131" y="364">4,5%</text>
-
             <path id="part-ad_calf_l_b" class="body-part" d="M 104 412 L 153 412 L 148 528 L 136 575 L 100 575 L 98 528 Z" onclick="togglePart('ad_calf_l_b')" />
             <text class="part-title" id="t-ad_calf_l_b" x="124" y="478">POD.+STOPA</text>
             <text class="part-label" id="lbl-ad_calf_l_b" x="124" y="498">4,5%</text>
-
             <path id="part-ad_thigh_r_b" class="body-part" d="M 214 275 L 170 275 L 177 408 L 226 408 L 221 315 Z" onclick="togglePart('ad_thigh_r_b')" />
             <text class="part-title" id="t-ad_thigh_r_b" x="199" y="344">UDO</text>
             <text class="part-label" id="lbl-ad_thigh_r_b" x="199" y="364">4,5%</text>
-
             <path id="part-ad_calf_r_b" class="body-part" d="M 226 412 L 177 412 L 182 528 L 194 575 L 230 575 L 232 528 Z" onclick="togglePart('ad_calf_r_b')" />
             <text class="part-title" id="t-ad_calf_r_b" x="206" y="478">POD.+STOPA</text>
             <text class="part-label" id="lbl-ad_calf_r_b" x="206" y="498">4,5%</text>
@@ -800,7 +778,7 @@
         <svg viewBox="0 0 680 600">
           <!-- DZIECKO PRZÓD -->
           <g id="ch-front" transform="translate(0, 0)">
-            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">PRZÓD</text>
+            <text x="165" y="24" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">PRZÓD</text>
 
             <ellipse id="part-ch_head_f" class="body-part" cx="165" cy="82" rx="55" ry="42" onclick="togglePart('ch_head_f')" />
             <text class="part-title" id="t-ch_head_f" x="165" y="72">GŁOWA</text>
@@ -879,7 +857,7 @@
 
           <!-- DZIECKO TYŁ -->
           <g id="ch-back" transform="translate(350, 0)">
-            <text x="165" y="24" font-size="16" font-weight="900" fill="#475569" text-anchor="middle">TYŁ</text>
+            <text x="165" y="24" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">TYŁ</text>
 
             <ellipse id="part-ch_head_b" class="body-part" cx="165" cy="82" rx="55" ry="42" onclick="togglePart('ch_head_b')" />
             <text class="part-title" id="t-ch_head_b" x="165" y="72">GŁOWA</text>
@@ -920,7 +898,7 @@
             <text class="part-title" id="t-ch_arm_r_b" x="260" y="182">RAMIĘ</text>
             <text class="part-label" id="lbl-ch_arm_r_b" x="260" y="197">2%</text>
 
-            <path id="part-ch_forearm_r_b" class="body-part" d="M 292 220 L 251 220 L 265 278 L 306 278 Z" onclick="togglePart('ch_forearm_r_b')" />
+            <path id="part-ch_forearm_r_b" class="body-part" d="M 292 220 L 251 220 L 265 278 L 306 278 Z" onclick="togglePart('part-ch_forearm_r_b')" />
             <text class="part-title" id="t-ch_forearm_r_b" x="278" y="244">PRZEDR.</text>
             <text class="part-label" id="lbl-ch_forearm_r_b" x="278" y="259">1,5%</text>
 
@@ -965,7 +943,7 @@
     </div>
 
     <!-- Pasek Wyniku Powierzchni Oparzenia -->
-    <div class="tbsa-result-card" style="margin-top: 4px;">
+    <div class="tbsa-result-card">
       <div>
         <div class="tbsa-title">Powierzchnia oparzenia</div>
         <div class="tbsa-desc" id="tbsa-desc-text">Dotknij części ciała, aby policzyć</div>
@@ -980,7 +958,7 @@
       <summary>💧 Płynoterapia Parklanda</summary>
       <div class="parkland-content" style="margin-top: 6px;">
         <div class="parkland-header">
-          <span style="font-size: 0.78rem; color: #64748b; font-weight: 700;">Wzór płynoterapii:</span>
+          <span style="font-size: 0.78rem; color: #64748b; font-weight: 500;">Wzór płynoterapii:</span>
           <div class="parkland-formula">4 ml × kg × % oparzenia</div>
         </div>
 
@@ -1017,23 +995,23 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>Paracetamol</strong><br><small>15 mg/kg i.v.</small></td>
+              <td>Paracetamol<br><small>15 mg/kg i.v.</small></td>
               <td id="med-paracetamol">210 mg</td>
             </tr>
             <tr>
-              <td><strong>Metamizol</strong> (Pyralgin)<br><small>8–16 mg/kg i.v.</small></td>
+              <td>Metamizol (Pyralgin)<br><small>8–16 mg/kg i.v.</small></td>
               <td id="med-metamizol">112 – 224 mg</td>
             </tr>
             <tr>
-              <td><strong>Morfina</strong><br><small>0,1 mg/kg i.v.</small></td>
+              <td>Morfina<br><small>0,1 mg/kg i.v.</small></td>
               <td id="med-morfina">1,4 mg i.v.</td>
             </tr>
             <tr>
-              <td><strong>Fentanyl (i.v.)</strong><br><small>1–3 mcg/kg i.v.</small></td>
+              <td>Fentanyl (i.v.)<br><small>1–3 mcg/kg i.v.</small></td>
               <td id="med-fentanyl-iv">14 – 42 mcg i.v.</td>
             </tr>
             <tr>
-              <td><strong>Fentanyl (donosowo)</strong><br><small>2 mcg/kg</small></td>
+              <td>Fentanyl (donosowo)<br><small>2 mcg/kg</small></td>
               <td id="med-fentanyl-nasal">28 mcg (0,6 ml do nosa)</td>
             </tr>
           </tbody>
